@@ -7,10 +7,9 @@ export default function SidebarDialog() {
     return (
         <Sheet>
             <SheetTrigger>
-                <Button variant="ghost" size="icon" className="rounded-full">
-                    <Menu className="h-[1.2rem] w-[1.2rem] scale-100 transition-all" />
-                    <span className="sr-only">Open menu</span>
-                </Button>
+                <div className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-secondary transition-all">
+                    <Menu className="w-6 h-6" />
+                </div>
             </SheetTrigger>
 
             <SheetContent side="left" className="max-w-[330px]">

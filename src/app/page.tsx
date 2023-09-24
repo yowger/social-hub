@@ -9,7 +9,7 @@ export default function Home() {
                 <Textarea placeholder="What's on your mind" />
             </div>
             <br />
-            <Post />
+            {/* <Post /> */}
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
             earum quaerat rem non perspiciatis quas tenetur facilis dolor ipsum
             laborum ea eius obcaecati, velit sunt, est tempore ad necessitatibus
