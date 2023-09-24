@@ -28,7 +28,7 @@ export default function RootLayout({
                 >
                     <Header />
                     <div className="grid grid-cols-8 w-full max-w-screen-xl mx-auto px-4">
-                        <div className="col-span-1 md:col-span-2 h-screen sticky top-0 translate-y-12 border-r">
+                        <div className="col-span-1 md:col-span-2 h-screen sticky top-0 border-r">
                             <Sidebar />
                         </div>
                         <div className="col-span-4 relative px-5 py-4 flex-1 mt-12">
