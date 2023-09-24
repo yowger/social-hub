@@ -1,8 +1,6 @@
 "use client"
 
 import { useRef } from "react"
-import Link from "next/link"
-import { Bell, Menu } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ToggleTheme } from "../common/ToggleTheme"
 import Logo from "../common/Logo"
@@ -11,16 +9,17 @@ import NotificationButton from "../common/NotificationButton"
 export default function Navbar() {
     const navRef = useRef<HTMLDivElement>(null)
 
-    const toggleNav = () => {
-        // todo show nav
-    }
+    // const toggleNav = () => {
+    //     // todo show nav
+    // }
 
     return (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900 border-b dark:border-b-0">
+        <nav className="sticky top-0 z-50 bg-white border-gray-200 dark:bg-gray-900 border-b dark:border-b-0">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
-                <div className="flex items-center">
+                <div className="flex items-center space-x-2">
                     <Logo />
-                    <div>
+                    {/* toggle sidebar */}
+                    {/* <div>
                         <button
                             onClick={toggleNav}
                             type="button"
@@ -29,11 +28,11 @@ export default function Navbar() {
                             <span className="sr-only">Open main menu</span>
                             <Menu />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
-                <div ref={navRef} className="hidden w-full md:block md:w-auto">
-                    <ul className="items-center font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-2 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <div ref={navRef} className="block w-auto">
+                    <ul className="items-center font-medium flex rounded-lg bg-gray-50 flex-row space-x-2 mt-0 dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <ToggleTheme />
                         </li>
