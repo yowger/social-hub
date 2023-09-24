@@ -1,15 +1,11 @@
 "use client"
 
-import { Bell, Home, User2, Settings } from "lucide-react"
-import SidebarItem from "./SidebarItem"
+import SidebarNavigation from "./SidebarNavigation"
 
 export default function Sidebar() {
     return (
-        <div className="flex flex-col pt-16 space-y-2">
-            <SidebarItem label="Home" Icon={Home} href="/" />
-            <SidebarItem label="Profile" Icon={User2} href="/profile" />
-            <SidebarItem label="Notifications" Icon={Bell} />
-            <SidebarItem label="Settings" Icon={Settings} />
-        </div>
+        <nav className="flex flex-col pt-16 space-y-2 pr-6">
+            <SidebarNavigation />
+        </nav>
     )
 }

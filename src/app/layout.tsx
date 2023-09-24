@@ -27,11 +27,11 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Header />
-                    <div className="grid grid-cols-8 w-full max-w-screen-xl mx-auto px-4">
-                        <div className="col-span-1 md:col-span-2 h-screen sticky top-0 border-r">
+                    <div className="flex w-full max-w-screen-xl mx-auto px-4">
+                        <div className="hidden md:flex md:w-[250px] h-screen sticky top-0 border-r">
                             <Sidebar />
                         </div>
-                        <div className="col-span-4 relative px-5 py-4 flex-1 mt-12">
+                        <div className="w-full md:max-w-[65ch] md:px-5 py-4 mt-12">
                             {children}
                         </div>
                     </div>

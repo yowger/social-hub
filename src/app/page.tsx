@@ -1,74 +1,17 @@
+import { Textarea } from "@/components/ui/textarea"
+
 export default function Home() {
     return (
         <main className="">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            officiis fuga dolor facilis blanditiis nesciunt doloribus sequi
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Voluptas officiis fuga dolor facilis
-            blanditiis nesciunt doloribus sequi repellendus debitis assumenda
-            unde optio molestiae, exercitationem placeat quae veniam, aliquid
-            non. A. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptas officiis fuga dolor facilis blanditiis nesciunt doloribus
-            sequi repellendus debitis assumenda unde optio molestiae,
-            exercitationem placeat quae veniam, aliquid non. A. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Voluptas officiis fuga
-            dolor facilis blanditiis nesciunt doloribus sequi repellendus
-            debitis assumenda unde optio molestiae, exercitationem placeat quae
-            veniam, aliquid non. A. Lorem, ipsum dolor sit amet consectetur
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            officiis fuga dolor facilis blanditiis nesciunt doloribus sequi
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Voluptas officiis fuga dolor facilis
-            blanditiis nesciunt doloribus sequi repellendus debitis assumenda
-            unde optio molestiae, exercitationem placeat quae veniam, aliquid
-            non. A. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptas officiis fuga dolor facilis blanditiis nesciunt doloribus
-            sequi repellendus debitis assumenda unde optio molestiae,
-            exercitationem placeat quae veniam, aliquid non. A. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Voluptas officiis fuga
-            dolor facilis blanditiis nesciunt doloribus sequi repellendus
-            debitis assumenda unde optio molestiae, exercitationem placeat quae
-            veniam, aliquid non. A. Lorem, ipsum dolor sit amet consectetur
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            officiis fuga dolor facilis blanditiis nesciunt doloribus sequi
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Voluptas officiis fuga dolor facilis
-            blanditiis nesciunt doloribus sequi repellendus debitis assumenda
-            unde optio molestiae, exercitationem placeat quae veniam, aliquid
-            non. A. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptas officiis fuga dolor facilis blanditiis nesciunt doloribus
-            sequi repellendus debitis assumenda unde optio molestiae,
-            exercitationem placeat quae veniam, aliquid non. A. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Voluptas officiis fuga
-            dolor facilis blanditiis nesciunt doloribus sequi repellendus
-            debitis assumenda unde optio molestiae, exercitationem placeat quae
-            veniam, aliquid non. A. Lorem, ipsum dolor sit amet consectetur
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            officiis fuga dolor facilis blanditiis nesciunt doloribus sequi
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
-            consectetur adipisicing elit. Voluptas officiis fuga dolor facilis
-            blanditiis nesciunt doloribus sequi repellendus debitis assumenda
-            unde optio molestiae, exercitationem placeat quae veniam, aliquid
-            non. A. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptas officiis fuga dolor facilis blanditiis nesciunt doloribus
-            sequi repellendus debitis assumenda unde optio molestiae,
-            exercitationem placeat quae veniam, aliquid non. A. Lorem, ipsum
-            dolor sit amet consectetur adipisicing elit. Voluptas officiis fuga
-            dolor facilis blanditiis nesciunt doloribus sequi repellendus
-            debitis assumenda unde optio molestiae, exercitationem placeat quae
-            veniam, aliquid non. A. Lorem, ipsum dolor sit amet consectetur
-            repellendus debitis assumenda unde optio molestiae, exercitationem
-            placeat quae veniam, aliquid non. A. Lorem, ipsum dolor sit amet
+            {/* post composer */}
+            <div>
+                <Textarea placeholder="What's on your mind" />
+            </div>
+            <br />
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+            earum quaerat rem non perspiciatis quas tenetur facilis dolor ipsum
+            laborum ea eius obcaecati, velit sunt, est tempore ad necessitatibus
+            consequuntur.
         </main>
     )
 }
