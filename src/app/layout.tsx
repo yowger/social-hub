@@ -26,7 +26,17 @@ export default function RootLayout({
                     disableTransitionOnChange
                 >
                     <Header />
-                    {children}
+                    <div className="flex w-full max-w-screen-xl mx-auto px-4 gap-4">
+                        <div className="hidden md:flex md:w-1/3 lg:w-1/4 px-5 py-4">
+                            sidebar
+                        </div>
+                        <div className="md:w-2/3 lg:w-3/4 px-5 py-4">
+                            {children}
+                        </div>
+                        <div className="hidden lg:flex lg:w-1/4 px-5 py-4">
+                            sidebar
+                        </div>
+                    </div>
                 </ThemeProvider>
             </body>
         </html>
