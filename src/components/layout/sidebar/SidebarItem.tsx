@@ -23,12 +23,12 @@ export default function SidebarItem({ label, Icon, href }: Props) {
 
     return (
         <div onClick={handleClick} className="flex flex-row items-center">
-            <div className="relative flex items-row gap-4 py-2 cursor-pointer items-center">
+            <div className="relative flex items-row gap-3.5 py-1 cursor-pointer items-center">
                 <Icon />
                 <p
                     className={clsx(
                         isCurrentRoute && "font-semibold",
-                        "block text-xl"
+                        "block text-lg hover:font-semibold"
                     )}
                 >
                     {label}

@@ -16,7 +16,7 @@ export default function Post({
     comment,
 }: PostProps) {
     return (
-        <div className="relative mb-10 bg-white dark:bg-gray-900 rounded-md">
+        <div className="relative mb-4 bg-white dark:bg-gray-900 rounded-md">
             <PostHeader name={name} date={date} privacy={privacy} />
 
             <PostContent content={content} />
