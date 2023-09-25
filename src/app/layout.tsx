@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import Sidebar from "@/components/layout/sidebar/Sidebar"
+import clsx from "clsx"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -19,7 +20,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body
+                className={clsx(
+                    inter.className,
+                    "dark:bg-background bg-gray-100"
+                )}
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

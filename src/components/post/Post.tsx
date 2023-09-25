@@ -1,49 +1,15 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
-import {
-    Forward,
-    Globe,
-    MessageCircle,
-    MoreHorizontal,
-    Share,
-    ThumbsUp,
-} from "lucide-react"
+import { Forward, MessageCircle, ThumbsUp } from "lucide-react"
+import PostHeader from "./PostHeader"
+import type { PostHeaderProps } from "@/types/user"
 
-export default function Post() {
+export default function Post({ name, date, privacy }: PostHeaderProps) {
     return (
-        <div>
-            {/* header */}
-            <div className="flex justify-between">
-                <div className="flex space-x-2">
-                    <Avatar className="w-9 h-9">
-                        <AvatarImage src="https://github.com/shadcn.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-
-                    <div className="">
-                        <p className="font-semibold">Roger Pantil</p>
-                        <div className="flex text-sm items-center gap-1.5">
-                            <p className="">1h ago</p>
-                            <p>·</p>
-                            <Globe className="w-4 h-4" />
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="rounded-full"
-                    >
-                        <MoreHorizontal className="h-[1.2rem] w-[1.2rem] scale-100 transition-all" />
-                        <span className="sr-only">Notifications</span>
-                    </Button>
-                </div>
-            </div>
+        <div className="mb-10 bg-white dark:bg-gray-900 rounded-md">
+            <PostHeader name={name} date={date} privacy={privacy} />
 
             {/* content */}
-            <div className="py-2">
+            <div className="py-2 px-3">
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                 Ratione nam voluptatum tempore vel repellat necessitatibus.
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -52,7 +18,7 @@ export default function Post() {
             {/* <div> Image</div> */}
 
             {/* post info */}
-            <div className="space-y-2">
+            <div className="space-y-2 px-3">
                 <div className="text-sm flex items-center justify-between">
                     <div>Reactions - 2</div>
                     <div>2 comments</div>

@@ -9,11 +9,23 @@ export default function Home() {
                 <Textarea placeholder="What's on your mind" />
             </div>
             <br />
-            <Post />
-            {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
-            earum quaerat rem non perspiciatis quas tenetur facilis dolor ipsum
-            laborum ea eius obcaecati, velit sunt, est tempore ad necessitatibus
-            consequuntur. */}
+            <Post
+                name={"Roger Pantil"}
+                date={new Date(Date.now() - 60 * 60 * 1000)}
+                privacy={"public"}
+            />
+
+            <Post
+                name={"Roger Pantil"}
+                date={new Date(Date.now() - 60 * 60 * 1000)}
+                privacy={"private"}
+            />
+
+            <Post
+                name={"Roger Pantil"}
+                date={new Date(Date.now() - 60 * 60 * 1000)}
+                privacy={"followers"}
+            />
         </main>
     )
 }
