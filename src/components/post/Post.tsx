@@ -4,6 +4,7 @@ import PostContent from "./PostContent"
 import type { PostProps } from "@/types/user"
 import PostAction from "./PostAction"
 import PostInfo from "./PostInfo"
+import PostImage from "./PostImage"
 
 export default function Post({
     name,
@@ -18,21 +19,10 @@ export default function Post({
 
             <PostContent content={content} />
 
-            {/* <div> Image</div> */}
-
-            {image && (
-                <div className="w-full h-full">
-                    <Image
-                        src={image}
-                        alt="post image"
-                        width={560}
-                        height={315}
-                    />
-                </div>
-            )}
+            <PostImage image={image} />
 
             {/* post info */}
-            <div className="space-y-2 px-3">
+            <div className="space-y-2.5 px-4">
                 <PostInfo />
 
                 <PostAction />

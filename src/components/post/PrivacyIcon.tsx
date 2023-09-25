@@ -7,6 +7,10 @@ export const iconMappings: Record<Privacy, JSX.Element> = {
     public: <Globe className="w-4 h-4" />,
 }
 
-export default function renderPrivacyIcon(privacy: Privacy): JSX.Element {
+type PrivacyIconType = {
+    privacy: Privacy
+}
+
+export default function PrivacyIcon({ privacy }: PrivacyIconType): JSX.Element {
     return iconMappings[privacy] || <Globe className="w-4 h-4" />
 }

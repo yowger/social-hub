@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { MoreHorizontal } from "lucide-react"
+import PrivacyIcon from "./PrivacyIcon"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
 import getTimeAgo from "@/lib/getTimeAgo"
-import renderPrivacyIcon from "@/lib/renderPrivacyIcons"
 import type { PostHeaderProps } from "@/types/user"
 
 export default function PostHeader({
@@ -11,10 +11,9 @@ export default function PostHeader({
     privacy = "public",
 }: PostHeaderProps) {
     const timeAgo = getTimeAgo(date)
-    const privacyIcon = renderPrivacyIcon(privacy)
 
     return (
-        <div className="flex justify-between pt-3 px-3">
+        <div className="flex justify-between pt-3 px-4">
             <div className="flex space-x-2">
                 <div className="flex items-center">
                     <Avatar>
@@ -28,7 +27,8 @@ export default function PostHeader({
                     <div className="flex text-sm items-center gap-1.5">
                         <p>{timeAgo}</p>
                         <p>·</p>
-                        <p>{privacyIcon}</p>
+                        {/* <p>{privacyIcon}</p> */}
+                        <PrivacyIcon privacy={privacy} />
                     </div>
                 </div>
             </div>

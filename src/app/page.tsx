@@ -27,6 +27,9 @@ export default function Home() {
                 
                 Nisi consectetur officia Lorem labore. Quis tempor in veniam veniam adipisicing exercitation. Aliqua excepteur sit qui consectetur sunt excepteur veniam non Lorem laboris eiusmod.
                 "
+                image={
+                    "https://images.unsplash.com/photo-1695112577118-d44f734ce6fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1227&q=80"
+                }
             />
 
             <Post

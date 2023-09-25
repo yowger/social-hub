@@ -5,7 +5,7 @@ export default function PostContent({ content }: PostContentProps) {
     return (
         <div
             dangerouslySetInnerHTML={{ __html: content }}
-            className="py-2 px-3"
+            className="py-2.5 px-4"
         />
     )
 }
