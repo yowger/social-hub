@@ -1,6 +1,3 @@
-"use client"
-
-import { useRef } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { ToggleTheme } from "../common/ToggleTheme"
 import Logo from "../common/Logo"
@@ -8,8 +5,6 @@ import NotificationButton from "../common/NotificationButton"
 import SidebarDialog from "./sidebar/SidebarDialog"
 
 export default function Navbar() {
-    const navRef = useRef<HTMLDivElement>(null)
-
     return (
         <nav className="fixed top-0 z-50 inset-x-0 bg-white border-gray-200 dark:bg-gray-900 border-b dark:border-b-0">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto px-4 py-2">
@@ -20,7 +15,7 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <div ref={navRef} className="block w-auto">
+                <div className="block w-auto">
                     <ul className="items-center font-medium flex rounded-lg bg-gray-50 flex-row space-x-2 mt-0 dark:bg-gray-900 dark:border-gray-700">
                         <li>
                             <ToggleTheme />
