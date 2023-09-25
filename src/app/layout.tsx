@@ -37,8 +37,8 @@ export default function RootLayout({
                         <div className="hidden md:flex md:w-[250px] h-screen sticky top-0 border-r">
                             <Sidebar />
                         </div>
-                        <div className="w-full md:max-w-[56ch] md:px-5 py-4 mt-12">
-                            {children}
+                        <div className="flex justify-center w-full md:px-5 py-4 mt-12 max-w-2xl">
+                            <div className="max-w-[56ch]">{children}</div>
                         </div>
                     </div>
                 </ThemeProvider>

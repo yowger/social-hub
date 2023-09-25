@@ -14,6 +14,9 @@ export default function Home() {
                 date={new Date(Date.now() - 60 * 60 * 1000)}
                 privacy={"public"}
                 content="Sint in excepteur culpa do cupidatat consequat tempor. Sit et ex ut nostrud cillum adipisicing id. Pariatur officia sunt consequat aliqua velit mollit in irure dolore consequat duis nulla dolor. Irure ad pariatur Lorem reprehenderit laboris tempor sint."
+                image={
+                    "https://images.unsplash.com/photo-1682686581660-3693f0c588d2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                }
             />
 
             <Post

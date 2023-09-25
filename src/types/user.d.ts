@@ -10,4 +10,8 @@ export type PostContentProps = {
     content: string
 }
 
-export type PostProps = PostHeaderProps & PostContentProps
+export type PostImageProps = {
+    image?: string
+}
+
+export type PostProps = PostHeaderProps & PostContentProps & PostImageProps

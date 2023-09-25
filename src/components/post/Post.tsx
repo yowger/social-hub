@@ -1,40 +1,45 @@
-import { Forward, MessageCircle, ThumbsUp } from "lucide-react"
+import Image from "next/image"
 import PostHeader from "./PostHeader"
 import PostContent from "./PostContent"
-import { Button } from "../ui/button"
 import type { PostProps } from "@/types/user"
+import PostAction from "./PostAction"
+import PostInfo from "./PostInfo"
 
-export default function Post({ name, date, privacy, content }: PostProps) {
+export default function Post({
+    name,
+    date,
+    privacy,
+    content,
+    image,
+}: PostProps) {
     return (
-        <div className="mb-10 bg-white dark:bg-gray-900 rounded-md">
+        <div className="relative mb-10 bg-white dark:bg-gray-900 rounded-md">
             <PostHeader name={name} date={date} privacy={privacy} />
 
             <PostContent content={content} />
 
             {/* <div> Image</div> */}
 
+            {image && (
+                <div className="w-full h-full">
+                    <Image
+                        src={image}
+                        alt="post image"
+                        width={560}
+                        height={315}
+                    />
+                </div>
+            )}
+
             {/* post info */}
             <div className="space-y-2 px-3">
-                <div className="text-sm flex items-center justify-between">
-                    <div>Reactions - 2</div>
-                    <div>2 comments</div>
-                </div>
+                <PostInfo />
 
-                {/* actions */}
-                <div className="grid grid-cols-3 gap-1 border-y py-1">
-                    <Button variant="ghost" className="flex items-center gap-2">
-                        <ThumbsUp /> React
-                    </Button>
-                    <Button variant="ghost" className="flex items-center gap-2">
-                        <MessageCircle /> Comment
-                    </Button>
-                    <Button variant="ghost" className="flex items-center gap-2">
-                        <Forward /> Share
-                    </Button>
-                </div>
+                <PostAction />
+
+                {/* comments */}
             </div>
 
-            {/* if more than 2 comments */}
             {/* <div>view more comments</div> */}
         </div>
     )
