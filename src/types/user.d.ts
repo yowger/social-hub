@@ -5,3 +5,9 @@ export type PostHeaderProps = {
     date: Date
     privacy: Privacy
 }
+
+export type PostContentProps = {
+    content: string
+}
+
+export type PostProps = PostHeaderProps & PostContentProps

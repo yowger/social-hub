@@ -1,20 +1,16 @@
-import { Button } from "../ui/button"
 import { Forward, MessageCircle, ThumbsUp } from "lucide-react"
 import PostHeader from "./PostHeader"
-import type { PostHeaderProps } from "@/types/user"
+import PostContent from "./PostContent"
+import { Button } from "../ui/button"
+import type { PostProps } from "@/types/user"
 
-export default function Post({ name, date, privacy }: PostHeaderProps) {
+export default function Post({ name, date, privacy, content }: PostProps) {
     return (
         <div className="mb-10 bg-white dark:bg-gray-900 rounded-md">
             <PostHeader name={name} date={date} privacy={privacy} />
 
-            {/* content */}
-            <div className="py-2 px-3">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Ratione nam voluptatum tempore vel repellat necessitatibus.
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Ratione nam voluptatum tempore vel repellat necessitatibus.{" "}
-            </div>
+            <PostContent content={content} />
+
             {/* <div> Image</div> */}
 
             {/* post info */}
