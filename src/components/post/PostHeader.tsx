@@ -27,7 +27,6 @@ export default function PostHeader({
                     <div className="flex text-sm items-center gap-1.5">
                         <p>{timeAgo}</p>
                         <p>·</p>
-                        {/* <p>{privacyIcon}</p> */}
                         <PrivacyIcon privacy={privacy} />
                     </div>
                 </div>
