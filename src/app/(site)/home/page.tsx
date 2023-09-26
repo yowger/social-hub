@@ -1,7 +1,7 @@
 import Post from "@/components/post/Post"
 import { Textarea } from "@/components/ui/textarea"
 
-export default function Root() {
+export default function Home() {
     const dateTest = new Date(Date.now() - 3 * 60 * 60 * 1000)
     return (
         <main className="">
