@@ -9,11 +9,14 @@ const strongPasswordSchema = z
 
 const confirmPassword = z.string()
 
-export const userFormRegisterSchema = z
-    .object({
-        name: nameSchema,
-        email: emailSchema,
-        password: strongPasswordSchema,
+export const userRegisterSchema = z.object({
+    name: nameSchema,
+    email: emailSchema,
+    password: strongPasswordSchema,
+})
+
+export const userFormRegisterSchema = userRegisterSchema
+    .extend({
         confirmPassword,
     })
     .refine((data) => data.password === data.confirmPassword, {
@@ -21,4 +24,5 @@ export const userFormRegisterSchema = z
         message: "Passwords do not match",
     })
 
-export type userFormRegister = z.infer<typeof userFormRegisterSchema>
+export type UserFormRegister = z.infer<typeof userFormRegisterSchema>
+export type UserRegister = z.infer<typeof userRegisterSchema>

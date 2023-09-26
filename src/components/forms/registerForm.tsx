@@ -1,7 +1,11 @@
 "use client"
 
-import * as z from "zod"
+import Link from "next/link"
+import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { userFormRegisterSchema } from "@/schemas/registerSchema"
+import type { userFormRegister } from "@/schemas/registerSchema"
+import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
     Form,
@@ -11,18 +15,15 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useForm } from "react-hook-form"
-import { userFormRegisterSchema } from "@/schemas/registerSchema"
-import type { userFormRegister } from "@/schemas/registerSchema"
-import Link from "next/link"
 
 export function RegisterForm() {
     const form = useForm<userFormRegister>({
         resolver: zodResolver(userFormRegisterSchema),
     })
 
-    const onSubmit = async (data: userFormRegister) => {}
+    const onSubmit = async (data: userFormRegister) => {
+        console.log("whats up: ", data)
+    }
 
     return (
         <Form {...form}>
