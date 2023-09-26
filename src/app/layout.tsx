@@ -1,10 +1,10 @@
-import Header from "@/components/layout/Header"
 import "./globals.css"
+import clsx from "clsx"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
 import Sidebar from "@/components/layout/sidebar/Sidebar"
-import clsx from "clsx"
+import Header from "@/components/layout/Header"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -32,7 +32,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <div className="">{children}</div>
                 </ThemeProvider>
             </body>
         </html>
