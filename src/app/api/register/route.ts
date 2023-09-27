@@ -8,7 +8,6 @@ import type { UserRegister } from "@/schemas/registerSchema"
 export async function POST(request: Request) {
     try {
         const body: UserRegister = await request.json()
-        console.log("body, ", body)
 
         const parsedBody = userRegisterSchema.parse(body)
         const { name, email, password } = parsedBody

@@ -1,10 +1,12 @@
 "use client"
 
+import { useEffect } from "react"
 import Link from "next/link"
+import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { userFormRegisterSchema } from "@/schemas/registerSchema"
-import type { userFormRegister } from "@/schemas/registerSchema"
+import type { UserFormRegister } from "@/schemas/registerSchema"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import {
@@ -17,13 +19,39 @@ import {
 } from "@/components/ui/form"
 
 export function RegisterForm() {
-    const form = useForm<userFormRegister>({
+    const form = useForm<UserFormRegister>({
         resolver: zodResolver(userFormRegisterSchema),
     })
 
-    const onSubmit = async (data: userFormRegister) => {
-        console.log("whats up: ", data)
+    const {
+        formState: { errors, isSubmitting },
+    } = form
+
+    console.log("errors: ", errors)
+    console.log("is submitting: ", isSubmitting)
+
+    const onSubmit = async (data: UserFormRegister) => {
+        console.log("registered")
+        const { name, email, password } = data
+
+        const response = await fetch("/api/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password,
+            }),
+        })
+
+        console.log("response: ", response)
     }
+
+    useEffect(() => {
+        console.log("errors:", errors)
+    }, [errors])
 
     return (
         <Form {...form}>
@@ -84,7 +112,12 @@ export function RegisterForm() {
                     )}
                 />
 
-                <Button type="submit">Submit</Button>
+                <Button disabled={isSubmitting} type="submit">
+                    {isSubmitting && (
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    )}
+                    Register
+                </Button>
             </form>
 
             <p>

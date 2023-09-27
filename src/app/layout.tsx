@@ -2,9 +2,9 @@ import "./globals.css"
 import clsx from "clsx"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+
 import { ThemeProvider } from "@/components/providers/ThemeProvider"
-import Sidebar from "@/components/layout/sidebar/Sidebar"
-import Header from "@/components/layout/Header"
+import { TanstackProvider } from "@/components/providers/TanstackProvider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -26,14 +26,16 @@ export default function RootLayout({
                     "dark:bg-background bg-gray-100"
                 )}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <div className="">{children}</div>
-                </ThemeProvider>
+                <TanstackProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        {children}
+                    </ThemeProvider>
+                </TanstackProvider>
             </body>
         </html>
     )
