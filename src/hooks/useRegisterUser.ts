@@ -1,15 +1,20 @@
+import { AxiosError } from "axios"
 import axiosPublic from "@/lib/axios"
-import { useMutation } from "react-query"
+import { useMutation, useQueryClient } from "react-query"
 import { UserRegister } from "@/schemas/registerSchema"
 
-const registerUser = (data: UserRegister): Promise<any> => {
-    return axiosPublic.post("/api/register", data)
+const registerUser = (user: UserRegister): Promise<any> => {
+    return axiosPublic.post("/api/register", user)
 }
 
 const useRegisterUser = () => {
-    const { data, isLoading, isError, error } = useMutation(registerUser)
+    const queryClient = useQueryClient()
 
-    return { data, isLoading, isError, error }
+    return useMutation<UserRegister, AxiosError, UserRegister>({
+        mutationFn: registerUser,
+        onSuccess: (userData) => queryClient.invalidateQueries("users"),
+        //todo add global key variables
+    })
 }
 
 export default useRegisterUser

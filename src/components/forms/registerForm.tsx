@@ -17,41 +17,42 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import useRegisterUser from "@/hooks/useRegisterUser"
 
 export function RegisterForm() {
     const form = useForm<UserFormRegister>({
         resolver: zodResolver(userFormRegisterSchema),
     })
 
-    const {
-        formState: { errors, isSubmitting },
-    } = form
+    const { mutate, isLoading, isSuccess, isError, error } = useRegisterUser()
 
-    console.log("errors: ", errors)
-    console.log("is submitting: ", isSubmitting)
-
-    const onSubmit = async (data: UserFormRegister) => {
-        console.log("registered")
+    const onSubmit = (data: UserFormRegister) => {
         const { name, email, password } = data
 
-        const response = await fetch("/api/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/json",
-            },
-            body: JSON.stringify({
-                name,
-                email,
-                password,
-            }),
-        })
-
-        console.log("response: ", response)
+        mutate({ name, email, password })
     }
 
     useEffect(() => {
-        console.log("errors:", errors)
-    }, [errors])
+        if (error) {
+            const statusResponse = error.response?.status
+
+            if (statusResponse === 409) {
+                const email = form.getValues("email")
+                const message = `${email} is already taken`
+
+                form.control.setError(
+                    "email",
+                    {
+                        type: "manual",
+                        message,
+                    },
+                    {
+                        shouldFocus: true,
+                    }
+                )
+            }
+        }
+    }, [error, form.control])
 
     return (
         <Form {...form}>
@@ -112,8 +113,8 @@ export function RegisterForm() {
                     )}
                 />
 
-                <Button disabled={isSubmitting} type="submit">
-                    {isSubmitting && (
+                <Button disabled={isLoading} type="submit">
+                    {isLoading && (
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
                     Register
