@@ -52,7 +52,7 @@ export function RegisterForm() {
                 )
             }
         }
-    }, [error, form.control])
+    }, [error, form])
 
     return (
         <Form {...form}>
