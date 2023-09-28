@@ -1,5 +1,5 @@
 import Sidebar from "@/components/layout/sidebar/Sidebar"
-import Header from "@/components/layout/Header"
+import Header from "@/components/layout/Header/Header"
 
 export default function HomeLayout({
     children,

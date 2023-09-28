@@ -1,8 +1,8 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { ToggleTheme } from "../common/ToggleTheme"
-import Logo from "../common/Logo"
-import NotificationButton from "../common/NotificationButton"
-import SidebarDialog from "./sidebar/SidebarDialog"
+import { ToggleTheme } from "../../common/ToggleTheme"
+import Logo from "../../common/Logo"
+import NotificationButton from "../../common/NotificationButton"
+import SidebarDialog from "../sidebar/SidebarDialog"
+import UserProfileDown from "./UserProfileDown"
 
 export default function Navbar() {
     return (
@@ -24,10 +24,7 @@ export default function Navbar() {
                             <NotificationButton />
                         </li>
                         <li>
-                            <Avatar>
-                                <AvatarImage src="https://github.com/shadcn.png" />
-                                <AvatarFallback>CN</AvatarFallback>
-                            </Avatar>
+                            <UserProfileDown />
                         </li>
                     </ul>
                 </div>
