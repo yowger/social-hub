@@ -6,7 +6,7 @@ const configureBaseUrl = () => {
     if (process.env.NODE_ENV === "development") {
         BASE_URL = "http://localhost:3000"
     } else {
-        BASE_URL = "/api"
+        BASE_URL = process.env.API_BASE_URL
     }
 
     return BASE_URL
