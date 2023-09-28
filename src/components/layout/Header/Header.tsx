@@ -1,8 +1,6 @@
-import { ToggleTheme } from "../../common/ToggleTheme"
 import Logo from "../../common/Logo"
-import NotificationButton from "../../common/NotificationButton"
 import SidebarDialog from "../sidebar/SidebarDialog"
-import UserProfileDown from "./UserProfileDown"
+import HeaderActions from "./HeaderActions"
 
 export default function Navbar() {
     return (
@@ -15,19 +13,7 @@ export default function Navbar() {
                     </div>
                 </div>
 
-                <div className="block w-auto">
-                    <ul className="items-center font-medium flex rounded-lg bg-gray-50 flex-row space-x-2 mt-0 dark:bg-gray-900 dark:border-gray-700">
-                        <li>
-                            <ToggleTheme />
-                        </li>
-                        <li>
-                            <NotificationButton />
-                        </li>
-                        <li>
-                            <UserProfileDown />
-                        </li>
-                    </ul>
-                </div>
+                <HeaderActions />
             </div>
         </nav>
     )

@@ -1,7 +1,7 @@
-import prisma from "@/lib/prismaDb"
 import NextAuth from "next-auth"
-import type { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import type { AuthOptions } from "next-auth"
+import prisma from "@/lib/prismaDb"
 import bcrypt from "bcrypt"
 
 export const authOptions: AuthOptions = {
@@ -30,6 +30,7 @@ export const authOptions: AuthOptions = {
                         id: true,
                         name: true,
                         email: true,
+                        role: true,
                         password: true,
                         image: true,
                     },
@@ -50,7 +51,9 @@ export const authOptions: AuthOptions = {
                     throw new Error("Incorrect password")
                 }
 
-                return user
+                const { password: _password, ...restOfUser } = user
+
+                return restOfUser
             },
         }),
     ],
