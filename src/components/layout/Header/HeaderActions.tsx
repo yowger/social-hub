@@ -14,16 +14,17 @@ export default function HeaderActions() {
                 <li>
                     <ToggleTheme />
                 </li>
-                {session?.user && (
-                    <>
+
+                <>
+                    {session?.user && (
                         <li>
                             <Notifications />
                         </li>
-                        <li>
-                            <UserProfileDown session={session} />
-                        </li>
-                    </>
-                )}
+                    )}
+                    <li>
+                        <UserProfileDown session={session} />
+                    </li>
+                </>
             </ul>
         </div>
     )

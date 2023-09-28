@@ -15,7 +15,11 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
 
-export default function UserProfileDown({ session }: { session: Session }) {
+export default function UserProfileDown({
+    session,
+}: {
+    session: Session | null
+}) {
     const handleSignOut = async () => {
         console.log("sign out")
         await signOut()
@@ -46,7 +50,7 @@ export default function UserProfileDown({ session }: { session: Session }) {
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => handleSignOut}>
+                        <DropdownMenuItem onClick={handleSignOut}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Log out</span>
                         </DropdownMenuItem>
