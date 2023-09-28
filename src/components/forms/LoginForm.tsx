@@ -47,7 +47,12 @@ export default function LoginForm() {
             }
 
             if (ok && !error) {
-                console.log("im in")
+                signIn("credentials", {
+                    email,
+                    password,
+                    redirect: true,
+                    callbackUrl: "/",
+                })
             }
         })
     }
