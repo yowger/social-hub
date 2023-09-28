@@ -2,6 +2,7 @@ import prisma from "@/lib/prismaDb"
 import NextAuth from "next-auth"
 import type { AuthOptions } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import bcrypt from "bcrypt"
 
 export const authOptions: AuthOptions = {
     providers: [
@@ -18,18 +19,38 @@ export const authOptions: AuthOptions = {
                 const { email, password } = credentials ?? {}
 
                 if (!email || !password) {
-                    return null
+                    throw new Error("Missing email or password")
                 }
 
-                const userExist = prisma.user.findUnique({
+                const user = await prisma.user.findUnique({
                     where: {
                         email,
                     },
+                    select: {
+                        id: true,
+                        name: true,
+                        email: true,
+                        password: true,
+                        image: true,
+                    },
                 })
 
-                // if(!userExist)
+                const userPassword = user?.password
 
-                return null
+                if (!user || !userPassword) {
+                    throw new Error("Account ot found")
+                }
+
+                const isValidPassword = await bcrypt.compare(
+                    password,
+                    userPassword
+                )
+
+                if (!isValidPassword) {
+                    throw new Error("Incorrect password")
+                }
+
+                return user
             },
         }),
     ],

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect } from "react"
+import { signIn } from "next-auth/react"
 import Link from "next/link"
 import { Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -19,14 +20,14 @@ import {
 } from "@/components/ui/form"
 import useRegisterUser from "@/hooks/useRegisterUser"
 
-export function RegisterForm() {
+export default function RegisterForm() {
     const form = useForm<UserFormRegister>({
         resolver: zodResolver(userFormRegisterSchema),
     })
 
-    const { mutate, isLoading, isSuccess, isError, error } = useRegisterUser()
+    const { mutate, isLoading, isSuccess, error } = useRegisterUser()
 
-    const onSubmit = (data: UserFormRegister) => {
+    const onSubmit = async (data: UserFormRegister) => {
         const { name, email, password } = data
 
         mutate({ name, email, password })
@@ -53,6 +54,19 @@ export function RegisterForm() {
             }
         }
     }, [error, form])
+
+    useEffect(() => {
+        if (isSuccess) {
+            const [email, password] = form.getValues(["email", "password"])
+
+            signIn("credentials", {
+                email,
+                password,
+                redirect: true,
+                callbackUrl: "/",
+            })
+        }
+    }, [isSuccess, form])
 
     return (
         <Form {...form}>
