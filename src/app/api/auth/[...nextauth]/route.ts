@@ -26,14 +26,14 @@ const authOptions: AuthOptions = {
                     where: {
                         email,
                     },
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true,
-                        role: true,
-                        password: true,
-                        image: true,
-                    },
+                    // select: {
+                    //     id: true,
+                    //     name: true,
+                    //     email: true,
+                    //     role: true,
+                    //     password: true,
+                    //     image: true,
+                    // },
                 })
 
                 const userPassword = user?.password
