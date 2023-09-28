@@ -17,44 +17,65 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
+import { useState } from "react"
 
 export default function LoginForm() {
+    const [isCredentialsLoading, setIsCredentialsLoading] = useState(false)
+    const [isGuestLoading, setIsGuestLoading] = useState(false)
+
+    const isLoading = isCredentialsLoading || isGuestLoading
+
     const form = useForm<UserFormLogin>({
         resolver: zodResolver(userLoginSchema),
     })
 
-    const {
-        formState: { isSubmitting },
-    } = form
-
     const onSubmit = async (data: UserFormLogin) => {
+        setIsCredentialsLoading(true)
+
         const { email, password } = data
+
+        const callback = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+        })
+
+        const { ok, error } = callback ?? {}
+
+        if (error) {
+            const message = error
+            form.control.setError("password", {
+                type: "manual",
+                message,
+            })
+        }
+
+        if (ok && !error) {
+            signIn("credentials", {
+                email,
+                password,
+                redirect: true,
+                callbackUrl: "/",
+            })
+        }
+
+        setIsCredentialsLoading(false)
+    }
+
+    const handleGuestLogin = async () => {
+        setIsGuestLoading(true)
+
+        const email = process.env.NEXT_PUBLIC_GUEST_EMAIL
+        const password = process.env.NEXT_PUBLIC_GUEST_PASSWORD
 
         await signIn("credentials", {
             email,
             password,
-            redirect: false,
-        }).then((callback) => {
-            const { ok, error } = callback ?? {}
-
-            if (error) {
-                const message = error
-
-                form.control.setError("password", {
-                    type: "manual",
-                    message,
-                })
-            }
-
-            if (ok && !error) {
-                signIn("credentials", {
-                    email,
-                    password,
-                    redirect: true,
-                    callbackUrl: "/",
-                })
-            }
+            redirect: true,
+            callbackUrl: "/",
         })
+
+        setIsGuestLoading(false)
     }
 
     return (
@@ -88,13 +109,24 @@ export default function LoginForm() {
                     )}
                 />
 
-                <Button disabled={isSubmitting} type="submit">
-                    {isSubmitting && (
+                <Button disabled={isLoading} type="submit">
+                    {isCredentialsLoading && (
                         <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     )}
                     Login
                 </Button>
             </form>
+
+            <p>or</p>
+
+            <Button disabled={isLoading} onClick={handleGuestLogin}>
+                {isGuestLoading && (
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                )}
+                Login as guest
+            </Button>
+
+            <br />
 
             <p>
                 {"Don't have an account?"}

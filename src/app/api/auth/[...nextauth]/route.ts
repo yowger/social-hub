@@ -39,7 +39,7 @@ const authOptions: AuthOptions = {
                 const userPassword = user?.password
 
                 if (!user || !userPassword) {
-                    throw new Error("Account ot found")
+                    throw new Error("Account not found")
                 }
 
                 const isValidPassword = await bcrypt.compare(

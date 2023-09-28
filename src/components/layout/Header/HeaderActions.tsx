@@ -10,7 +10,7 @@ export default function HeaderActions() {
 
     return (
         <div className="block w-auto">
-            <ul className="items-center font-medium flex rounded-lg bg-gray-50 flex-row space-x-2 mt-0 dark:bg-gray-900 dark:border-gray-700">
+            <ul className="items-center font-medium flex rounded-lg flex-row space-x-2 mt-0">
                 <li>
                     <ToggleTheme />
                 </li>
