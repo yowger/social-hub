@@ -13,11 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { signOut } from "next-auth/react"
 
-export default function UserProfileDown({
-    session,
-}: {
-    session: Session | null
-}) {
+export default function UserProfileDown({ session }: { session: Session }) {
     const handleSignOut = async () => {
         console.log("sign out")
         await signOut()
