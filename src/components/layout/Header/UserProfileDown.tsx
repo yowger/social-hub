@@ -1,7 +1,9 @@
 "use client"
 
+import { useRouter } from "next/navigation"
+import { signOut } from "next-auth/react"
+import type { Session } from "next-auth"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Session } from "next-auth"
 import { Bell, LogOut, User } from "lucide-react"
 import {
     DropdownMenu,
@@ -11,13 +13,22 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { signOut } from "next-auth/react"
 
 export default function UserProfileDown({ session }: { session: Session }) {
+    const router = useRouter()
+
     const handleSignOut = async () => {
-        console.log("sign out")
         await signOut()
     }
+
+    const handleProfileClick = () => {
+        router.push("/profile")
+    }
+
+    const handleNotificationsClick = () => {
+        router.push("/notifications")
+    }
+
     return (
         <DropdownMenu>
             <DropdownMenuTrigger
@@ -32,11 +43,11 @@ export default function UserProfileDown({ session }: { session: Session }) {
             <DropdownMenuContent className="w-44">
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleProfileClick}>
                         <User className="mr-2 h-4 w-4" />
                         <span>Profile</span>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem onClick={handleNotificationsClick}>
                         <Bell className="mr-2 h-4 w-4" />
                         <span>Notifications</span>
                     </DropdownMenuItem>
