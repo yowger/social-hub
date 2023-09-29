@@ -8,7 +8,6 @@ import type { UserRegister } from "@/schemas/registerSchema"
 export async function POST(request: Request) {
     try {
         const body: UserRegister = await request.json()
-
         const parsedBody = userRegisterSchema.parse(body)
         const { name, email, password } = parsedBody
 
@@ -36,12 +35,12 @@ export async function POST(request: Request) {
         })
 
         const { password: createdPassword, ...userWithoutPassword } = user
-
+        
         return NextResponse.json({ user: userWithoutPassword }, { status: 201 })
     } catch (error) {
         const zodErrorResponse = zodCustomError(
             error,
-            "Registration failed: invalid Data"
+            "Registration failed: invalid data"
         )
         if (zodErrorResponse) {
             return NextResponse.json(zodErrorResponse, { status: 422 })

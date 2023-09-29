@@ -1,18 +1,11 @@
 import Post from "@/components/post/Post"
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import PostComposer from "@/components/post/PostComposer"
 
 export default function Home() {
     const dateTest = new Date(Date.now() - 3 * 60 * 60 * 1000)
     return (
         <main className="">
-            {/* post composer */}
-            <div className="space-y-2">
-                <Textarea placeholder="What's on your mind" />
-                <div className="flex justify-end">
-                    <Button size="sm">POST</Button>
-                </div>
-            </div>
+            <PostComposer />
             <br />
             <Post
                 name={"Roger Pantil"}
