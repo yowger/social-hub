@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
         const { content } = parsedBody
 
         const post = await prisma.post.create({
-            data: { content, authorId: user.id },
+            data: { content, authorId: user.id, recipientId: user.id },
         })
 
         console.log("created post: ", post)
