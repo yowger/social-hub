@@ -30,30 +30,33 @@ enum ReactionType {
 }
 
 model User {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  name      String
-  email     String     @unique
-  role      Role       @default(USER)
-  password  String
-  image     String?
-  cover     String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  post      Post[]
-  Comments  Comments[]
-  Reaction  Reaction[]
+  id              String     @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  email           String     @unique
+  role            Role       @default(USER)
+  password        String
+  image           String?
+  cover           String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  PostByAuthor    Post[]     @relation("postByAuthor")
+  PostByRecipient Post[]     @relation("postByRecipient")
+  Comments        Comments[]
+  Reaction        Reaction[]
 }
 
 model Post {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  privacy   Privacy    @default(PUBLIC)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  author    User       @relation(fields: [authorId], references: [id])
-  authorId  String     @db.ObjectId
-  Comments  Comments[]
-  Reaction  Reaction[]
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  content     String
+  privacy     Privacy    @default(PUBLIC)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  author      User       @relation("postByAuthor", fields: [authorId], references: [id])
+  authorId    String     @db.ObjectId
+  recipient   User       @relation("postByRecipient", fields: [recipientId], references: [id])
+  recipientId String     @db.ObjectId
+  Comments    Comments[]
+  Reaction    Reaction[]
 }
 
 model Comments {
