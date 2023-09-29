@@ -1,4 +1,5 @@
 import Post from "@/components/post/Post"
+import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 
 export default function Home() {
@@ -6,8 +7,11 @@ export default function Home() {
     return (
         <main className="">
             {/* post composer */}
-            <div>
+            <div className="space-y-2">
                 <Textarea placeholder="What's on your mind" />
+                <div className="flex justify-end">
+                    <Button size="sm">POST</Button>
+                </div>
             </div>
             <br />
             <Post

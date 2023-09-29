@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { emailSchema, nameSchema } from "./userSchema"
+import { emailSchema, nameSchema } from "./commonSchema"
 
 const strongPasswordSchema = z
     .string()

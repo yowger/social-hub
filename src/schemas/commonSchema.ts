@@ -9,3 +9,5 @@ export const emailSchema = z
     .min(1, "Email is required")
     .email("Invalid email")
 export const passwordSchema = z.string().min(1, "Password is required")
+
+export const PrivacySchema = z.enum(["PUBLIC", "FOLLOWERS", "PRIVATE"])

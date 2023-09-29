@@ -18,7 +18,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import useRegisterUser from "@/hooks/useRegisterUser"
+import useRegisterUser from "@/hooks/api/auth/useRegisterUser"
 
 export default function RegisterForm() {
     const form = useForm<UserFormRegister>({
