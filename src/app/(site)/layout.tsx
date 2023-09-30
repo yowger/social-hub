@@ -14,7 +14,7 @@ export default function HomeLayout({
                     <Sidebar />
                 </div>
                 <div className="flex justify-center w-full md:px-5 py-4 mt-12 md:max-w-2xl">
-                    <div className="max-w-[56ch]">{children}</div>
+                    <div className="max-w-[56ch] w-full">{children}</div>
                 </div>
             </div>
         </>
