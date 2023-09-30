@@ -10,8 +10,8 @@ export default function Home() {
             <PostComposer />
 
             <PostFeed />
-            <br />
-            <Post
+           
+            {/* <Post
                 name={"Roger Pantil"}
                 date={new Date(Date.now() - 60 * 60 * 1000)}
                 privacy={"public"}
@@ -59,7 +59,7 @@ Sit laboris nostrud minim exercitation ea amet. Nulla sunt eiusmod reprehenderit
                         "loremConsectetur proident aliquip et magna tempor dolor aliquip laboris cillum dolore adipisicing.",
                     reactions: "like",
                 }}
-            />
+            /> */}
         </main>
     )
 }
