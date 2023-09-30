@@ -19,12 +19,11 @@ const useInfiniteGetPosts = (pageSize = 10) => {
         queryFn: ({ pageParam: page = 0 }) => getPosts(page, pageSize),
         refetchOnWindowFocus: false,
         getNextPageParam: (lastPage, allPages) => {
-            const maxPages = Math.ceil(lastPage.totalCount / pageSize)
-            const nextPage = allPages.length + 1
+            const totalPages = Math.ceil(lastPage.totalCount / pageSize)
+            const currentPageCount = allPages.length
+            const hasNextPage = totalPages > currentPageCount
 
-            const hasNextPage = nextPage <= maxPages ? nextPage : undefined
-
-            return hasNextPage
+            return hasNextPage ? currentPageCount : undefined
         },
     })
 }

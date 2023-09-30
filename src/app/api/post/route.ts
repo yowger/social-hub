@@ -55,10 +55,12 @@ export async function GET(request: NextRequest) {
         const pageNumber = +(searchParams.get("pageNumber") ?? 0)
         const pageSize = +(searchParams.get("pageSize") ?? 10)
 
+        const skip = pageNumber * pageSize
+
         const result = await prisma.$transaction([
             prisma.post.count(),
             prisma.post.findMany({
-                skip: pageNumber,
+                skip: skip,
                 take: pageSize,
                 select: {
                     id: true,

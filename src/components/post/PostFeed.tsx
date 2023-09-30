@@ -15,12 +15,15 @@ function PostFeed() {
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteGetPosts()
+    } = useInfiniteGetPosts(5)
 
-    const dataLength = data ? data.pages[0].totalCount : 0
+    const post =
+        data?.pages.flatMap(({ posts }) => {
+            return posts
+        }) || []
 
-    console.log("dataLength: ", dataLength)
-    console.log("is fetching, ", isFetching)
+    const dataLength = post ? post.length : 0
+    const endMessage = hasNextPage === false && <p>no more post to show</p>
     return (
         <div>
             {isLoading && <SkeletonPostLoader />}
@@ -30,21 +33,19 @@ function PostFeed() {
                 next={fetchNextPage}
                 hasMore={!!hasNextPage}
                 loader={<SkeletonPostLoader />}
-                endMessage={hasNextPage && <p>no more post to show</p>}
+                endMessage={endMessage}
             >
-                {data?.pages.map((page) =>
-                    page.posts.map((post: any) => {
-                        return (
-                            <Post
-                                key={post.id}
-                                name={post.author.name}
-                                date={post.createdAt}
-                                privacy={post.privacy}
-                                content={post.content}
-                            />
-                        )
-                    })
-                )}
+                {post.map((post, index) => {
+                    return (
+                        <Post
+                            key={index}
+                            name={post.author.name}
+                            date={post.createdAt}
+                            privacy={post.privacy}
+                            content={post.content}
+                        />
+                    )
+                })}
             </InfiniteScroll>
         </div>
     )
