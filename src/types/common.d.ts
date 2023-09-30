@@ -1,18 +1,18 @@
 export enum Role {
-    USER,
-    ADMIN,
+    User = "USER",
+    Admin = "ADMIN",
 }
 
 export enum Privacy {
-    PUBLIC,
-    FOLLOWERS,
-    PRIVATE,
+    Public = "PUBLIC",
+    Followers = "FOLLOWERS",
+    Private = "PRIVATE",
 }
 
 export enum ReactionType {
-    LIKE,
-    LOVE,
-    LAUGH,
-    ANGRY,
-    SAD,
+    Like = "LIKE",
+    Love = "LOVE",
+    Laugh = "LAUGH",
+    Angry = "ANGRY",
+    Sad = "SAD",
 }
