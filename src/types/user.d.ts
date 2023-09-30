@@ -1,4 +1,4 @@
-export type Privacy = "private" | "public" | "followers"
+import { Privacy } from "./common"
 export type Reactions = "like" | "love" | "laugh" | "angry" | "sad"
 
 export type Name = string

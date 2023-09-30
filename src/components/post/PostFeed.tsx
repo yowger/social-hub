@@ -17,14 +17,18 @@ function PostFeed() {
         isFetchingNextPage,
     } = useInfiniteGetPosts()
 
+    const dataLength = data ? data.pages[0].totalCount : 0
+
+    console.log("dataLength: ", dataLength)
+    console.log("is fetching, ", isFetching)
     return (
         <div>
             {isLoading && <SkeletonPostLoader />}
 
             <InfiniteScroll
-                dataLength={data ? data.length : 0}
+                dataLength={dataLength}
                 next={fetchNextPage}
-                hasMore={hasNextPage}
+                hasMore={!!hasNextPage}
                 loader={<SkeletonPostLoader />}
                 endMessage={hasNextPage && <p>no more post to show</p>}
             >
