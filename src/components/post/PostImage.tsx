@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { PostImageProps } from "@/types/user"
+import { PostImageProps } from "@/types/userTypes"
 
 export default function PostImage({ image }: PostImageProps) {
     if (image) {

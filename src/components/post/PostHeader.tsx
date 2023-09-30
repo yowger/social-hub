@@ -3,7 +3,7 @@ import PrivacyIcon from "./PrivacyIcon"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
 import getTimeAgo from "@/lib/getTimeAgo"
-import type { PostHeaderProps } from "@/types/user"
+import type { PostHeaderProps } from "@/types/userTypes"
 
 export default function PostHeader({ name, date, privacy }: PostHeaderProps) {
     const timeAgo = getTimeAgo(date)

@@ -1,5 +1,5 @@
 import { Globe, Lock, User2, Users2 } from "lucide-react"
-import { Privacy } from "@/types/common"
+import { Privacy } from "@/types/commonTypes"
 
 export const iconMappings: Record<Privacy, JSX.Element> = {
     PUBLIC: <Globe className="w-4 h-4" />,

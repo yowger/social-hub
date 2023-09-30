@@ -1,4 +1,4 @@
-import { Privacy } from "./common"
+import { Privacy } from "./commonTypes"
 
 export type Post = {
     id: string

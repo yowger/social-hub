@@ -1,4 +1,4 @@
-import { PostContentProps } from "@/types/user"
+import { PostContentProps } from "@/types/userTypes"
 
 // todo: sanitize
 export default function PostContent({ content }: PostContentProps) {

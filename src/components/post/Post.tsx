@@ -1,7 +1,7 @@
 import Image from "next/image"
 import PostHeader from "./PostHeader"
 import PostContent from "./PostContent"
-import type { PostProps } from "@/types/user"
+import type { PostProps } from "@/types/userTypes"
 import PostAction from "./PostAction"
 import PostInfo from "./PostInfo"
 import PostImage from "./PostImage"

@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
 import { MoreHorizontal } from "lucide-react"
-import type { PostCommentProps } from "@/types/user"
+import type { PostCommentProps } from "@/types/userTypes"
 import getTimeAgo from "@/lib/getTimeAgo"
 
 export default function PostComment({
