@@ -18,12 +18,13 @@ function PostFeed() {
     } = useInfiniteGetPosts(5)
 
     const post =
-        data?.pages.flatMap(({ posts }) => {
+        data?.pages?.flatMap(({ posts }) => {
             return posts
         }) || []
 
     const dataLength = post ? post.length : 0
     const endMessage = hasNextPage === false && <p>no more post to show</p>
+
     return (
         <div>
             {isLoading && <SkeletonPostLoader />}

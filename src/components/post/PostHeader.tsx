@@ -5,11 +5,7 @@ import { Button } from "../ui/button"
 import getTimeAgo from "@/lib/getTimeAgo"
 import type { PostHeaderProps } from "@/types/user"
 
-export default function PostHeader({
-    name,
-    date,
-    privacy = "public",
-}: PostHeaderProps) {
+export default function PostHeader({ name, date, privacy }: PostHeaderProps) {
     const timeAgo = getTimeAgo(date)
 
     return (
