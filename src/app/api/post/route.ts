@@ -50,28 +50,44 @@ export async function POST(request: NextRequest) {
 
 export async function GET(request: NextRequest) {
     try {
-        const posts = await prisma.post.findMany({
-            select: {
-                id: true,
-                content: true,
-                privacy: true,
-                createdAt: true,
-                author: {
-                    select: {
-                        id: true,
-                        name: true,
-                    },
-                },
-                recipient: {
-                    select: {
-                        id: true,
-                        name: true,
-                    },
-                },
-            },
-        })
+        const { searchParams } = new URL(request.url)
 
-        return NextResponse.json({ posts }, { status: 201 })
+        const pageNumber = +(searchParams.get("pageNumber") ?? 0)
+        const pageSize = +(searchParams.get("pageSize") ?? 10)
+
+        const result = await prisma.$transaction([
+            prisma.post.count(),
+            prisma.post.findMany({
+                skip: pageNumber,
+                take: pageSize,
+                select: {
+                    id: true,
+                    content: true,
+                    privacy: true,
+                    createdAt: true,
+                    author: {
+                        select: {
+                            id: true,
+                            name: true,
+                            image: true,
+                        },
+                    },
+                    recipient: {
+                        select: {
+                            id: true,
+                            name: true,
+                        },
+                    },
+                },
+            }),
+        ])
+
+        const [totalCount, posts] = result
+
+        return NextResponse.json(
+            { posts, pageNumber, pageSize, totalCount },
+            { status: 201 }
+        )
     } catch (error) {
         console.log("Failed to fetch posts: ", error)
 

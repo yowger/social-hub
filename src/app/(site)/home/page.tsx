@@ -1,11 +1,15 @@
 import Post from "@/components/post/Post"
 import PostComposer from "@/components/post/PostComposer"
+import PostFeed from "@/components/post/PostFeed"
 
 export default function Home() {
     const dateTest = new Date(Date.now() - 3 * 60 * 60 * 1000)
+
     return (
         <main className="">
             <PostComposer />
+
+            <PostFeed />
             <br />
             <Post
                 name={"Roger Pantil"}

@@ -14,7 +14,6 @@ const useCreatePost = () => {
     return useMutation<UserPost, AxiosError, UserPost>({
         mutationFn: createPost,
         onSuccess: (userPost) => queryClient.invalidateQueries(POST_QUERY_KEY),
-        //todo add global key variables
     })
 }
 
