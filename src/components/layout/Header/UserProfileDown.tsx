@@ -10,12 +10,14 @@ import {
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
+    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
 export default function UserProfileDown({ session }: { session: Session }) {
     const router = useRouter()
+    const { user } = session
 
     const handleSignOut = async () => {
         await signOut()
@@ -41,6 +43,7 @@ export default function UserProfileDown({ session }: { session: Session }) {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-44">
+                <DropdownMenuLabel>{user.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem onClick={handleProfileClick}>
