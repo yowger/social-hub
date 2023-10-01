@@ -2,7 +2,7 @@ In development:
 
 Stack: Next.js, typescript, prisma, mongodb, tailwindcss, shadui
 
-view live website: https://yow-social-hub.netlify.app/
+view live website: https://social-hub-seven.vercel.app
 
 Early development image:
 
