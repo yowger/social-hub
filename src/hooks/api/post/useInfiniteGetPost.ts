@@ -2,7 +2,7 @@ import { useInfiniteQuery } from "react-query"
 import { POST_QUERY_KEY } from "../queryKeys"
 import axiosPublic from "@/lib/axios"
 import { AxiosResponse } from "axios"
-import { ApiPost } from "@/types/post"
+import { ApiPost } from "@/types/postTypes"
 
 const getPosts = async (page = 0, pageSize = 10): Promise<ApiPost> => {
     const response: AxiosResponse<ApiPost> = await axiosPublic.get(
