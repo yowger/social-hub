@@ -55,11 +55,14 @@ export async function GET(request: NextRequest) {
 
         const skip = pageNumber * pageSize
 
-        const result = await prisma.$transaction([
+        const postResult = await prisma.$transaction([
             prisma.post.count(),
             prisma.post.findMany({
                 skip: skip,
                 take: pageSize,
+                orderBy: {
+                    createdAt: "desc",
+                },
                 select: {
                     id: true,
                     content: true,
@@ -78,11 +81,30 @@ export async function GET(request: NextRequest) {
                             name: true,
                         },
                     },
+                    Comments: {
+                        take: 1,
+                        orderBy: {
+                            createdAt: "desc",
+                        },
+                        select: {
+                            id: true,
+                            content: true,
+                            createdAt: true,
+                            updatedAt: true,
+                            author: {
+                                select: {
+                                    id: true,
+                                    name: true,
+                                    image: true,
+                                },
+                            },
+                        },
+                    },
                 },
             }),
         ])
 
-        const [totalCount, posts] = result
+        const [totalCount, posts] = postResult
 
         return NextResponse.json(
             { posts, pageNumber, pageSize, totalCount },

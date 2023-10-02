@@ -36,15 +36,18 @@ function PostFeed() {
                 loader={<SkeletonPostLoader />}
                 endMessage={endMessage}
             >
-                {post.map((post, index) => {
+                {post.map((post) => {
+                    console.log("post: ", post.comments)
                     return (
                         <Post
                             key={post.id}
-                            postId={post.id}
-                            name={post.author.name}
-                            date={post.createdAt}
+                            id={post.id}
+                            author={post.author}
+                            recipient={post.recipient}
+                            createdAt={post.createdAt}
                             privacy={post.privacy}
                             content={post.content}
+                            comments={post.comments}
                         />
                     )
                 })}

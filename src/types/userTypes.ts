@@ -24,7 +24,3 @@ export type PostCommentProps = {
     content: Content
     reactions: Reactions
 }
-
-export type PostProps = { postId: string } & PostHeaderProps &
-    PostContentProps &
-    PostImageProps & { comment?: PostCommentProps }
