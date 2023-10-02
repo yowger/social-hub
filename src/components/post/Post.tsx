@@ -8,6 +8,7 @@ import PostAction from "./PostAction"
 import CommentComposer from "./CommentComposer"
 import PostComment from "./PostComment"
 import type { Post } from "@/types/postTypes"
+import { useState } from "react"
 
 type PostProps = Post
 
@@ -21,6 +22,13 @@ export default function Post({
     Comments,
     _count,
 }: PostProps) {
+    const [isCommentVisible, setIsCommentVisible] = useState(false)
+
+    const onClickComment = () => {
+        console.log("hi")
+        setIsCommentVisible((prev) => !prev)
+    }
+
     return (
         <PostWrapper>
             <PostHeader name={author.name} date={createdAt} privacy={privacy} />
@@ -29,8 +37,8 @@ export default function Post({
 
             <PostInteractionPanel>
                 <PostInfo count={_count} />
-                <PostAction />
-                <CommentComposer postId={id} />
+                <PostAction onComment={onClickComment} />
+                {isCommentVisible && <CommentComposer postId={id} />}
 
                 {Comments && (
                     <div className="space-y-2.5 pb-2.5">

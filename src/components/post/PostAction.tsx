@@ -1,13 +1,24 @@
 import { Forward, MessageCircle, ThumbsUp } from "lucide-react"
 import { Button } from "../ui/button"
 
-export default function PostAction() {
+type PostActionProps = {
+    onReact?: () => void
+    onComment?: () => void
+    onShare?: () => void
+}
+
+export default function PostAction({
+    onReact,
+    onComment,
+    onShare,
+}: PostActionProps) {
     return (
         <div className="grid grid-cols-3 gap-1 border-y py-0.5">
             <Button
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-2"
+                onClick={onReact}
             >
                 <ThumbsUp size={18} /> React
             </Button>
@@ -15,6 +26,7 @@ export default function PostAction() {
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-2"
+                onClick={onComment}
             >
                 <MessageCircle size={18} /> Comment
             </Button>
@@ -22,6 +34,7 @@ export default function PostAction() {
                 variant="ghost"
                 size="sm"
                 className="flex items-center gap-2"
+                onClick={onShare}
             >
                 <Forward size={18} /> Share
             </Button>
