@@ -46,6 +46,9 @@ export async function POST(request: NextRequest) {
     }
 }
 
+// might change to raw or aggregate in the future better performance
+// using this method, it takes about a 1 second to fetch request
+
 export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url)

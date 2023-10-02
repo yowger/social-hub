@@ -15,7 +15,7 @@ function PostFeed() {
         hasNextPage,
         fetchNextPage,
         isFetchingNextPage,
-    } = useInfiniteGetPosts(5)
+    } = useInfiniteGetPosts(10)
 
     const post =
         data?.pages?.flatMap(({ posts }) => {
