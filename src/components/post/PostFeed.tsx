@@ -37,7 +37,7 @@ function PostFeed() {
                 endMessage={endMessage}
             >
                 {post.map((post) => {
-                    console.log("post: ", post.comments)
+                    console.log("post: ", post)
                     return (
                         <Post
                             key={post.id}
@@ -47,7 +47,7 @@ function PostFeed() {
                             createdAt={post.createdAt}
                             privacy={post.privacy}
                             content={post.content}
-                            comments={post.comments}
+                            Comments={post.Comments}
                         />
                     )
                 })}

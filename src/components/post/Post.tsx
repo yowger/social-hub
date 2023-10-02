@@ -6,6 +6,7 @@ import PostInteractionPanel from "./PostInteractionPanel"
 import PostInfo from "./PostInfo"
 import PostAction from "./PostAction"
 import CommentComposer from "./CommentComposer"
+import PostComment from "./PostComment"
 import type { Post } from "@/types/postTypes"
 
 type PostProps = Post
@@ -17,7 +18,7 @@ export default function Post({
     privacy,
     content,
     // image,
-    comments,
+    Comments,
 }: PostProps) {
     return (
         <PostWrapper>
@@ -30,22 +31,24 @@ export default function Post({
                 <PostAction />
                 <CommentComposer postId={id} />
 
-                {/* {comment && (
-                                    <div className="space-y-2.5 pb-2.5">
-                                        <PostComment
-                                            name={comment.name}
-                                            content={comment.content}
-                                            date={comment.date}
-                                            reactions={comment.reactions}
-                                        />
-                                        <PostComment
-                                            name={comment.name}
-                                            content={comment.content}
-                                            date={comment.date}
-                                            reactions={comment.reactions}
-                                        />
-                                    </div>
-                                )} */}
+                {Comments && (
+                    <div className="space-y-2.5 pb-2.5">
+                        {Comments.map((Comment) => {
+                            return (
+                                <PostComment
+                                    key={Comment.id}
+                                    id={Comment.id}
+                                    content={Comment.content}
+                                    image={Comment.image}
+                                    author={Comment.author}
+                                    createdAt={Comment.createdAt}
+                                    updatedAt={Comment.updatedAt}
+                                    // reactions={comment.reactions}
+                                />
+                            )
+                        })}
+                    </div>
+                )}
 
                 {/* <div>view more comments</div> */}
             </PostInteractionPanel>

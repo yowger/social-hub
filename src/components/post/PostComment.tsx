@@ -1,16 +1,19 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
 import { MoreHorizontal } from "lucide-react"
-import type { PostCommentProps } from "@/types/userTypes"
 import getTimeAgo from "@/lib/getTimeAgo"
+import type { Comment } from "@/types/postTypes"
 
 export default function PostComment({
-    name,
+    id,
     content,
-    date,
-    reactions,
-}: PostCommentProps) {
-    const timeAgo = getTimeAgo(date)
+    image,
+    author,
+    createdAt,
+    updatedAt,
+    // reactions
+}: Comment) {
+    const timeAgo = getTimeAgo(createdAt)
 
     return (
         <div className="">
@@ -25,7 +28,9 @@ export default function PostComment({
                 <div className="space-y-1">
                     <div className="flex gap-1">
                         <div className="flex flex-col gap-0.5 bg-secondary rounded-lg px-2.5 py-2">
-                            <h3 className="font-medium text-sm">{name}</h3>
+                            <h3 className="font-medium text-sm">
+                                {author.name}
+                            </h3>
                             <p className="text-sm">{content}</p>
                         </div>
 

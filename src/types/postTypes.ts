@@ -11,8 +11,8 @@ export type Comment = {
     content: string
     image?: string
     author: author
-    createdAt: string
-    updatedAt: string
+    createdAt: Date
+    updatedAt: Date
 }
 
 export type Post = {
@@ -22,7 +22,7 @@ export type Post = {
     createdAt: Date
     author: author
     recipient: author
-    comments: Comment[]
+    Comments: Comment[]
 }
 
 export type ApiPost = {

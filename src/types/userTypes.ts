@@ -17,10 +17,3 @@ export type PostContentProps = {
 export type PostImageProps = {
     image?: string
 }
-
-export type PostCommentProps = {
-    name: Name
-    date: Date
-    content: Content
-    reactions: Reactions
-}
