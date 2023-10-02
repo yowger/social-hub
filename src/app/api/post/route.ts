@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
 
         const skip = pageNumber * pageSize
 
-        const postResult = await prisma.$transaction([
+        const [totalCount, posts] = await prisma.$transaction([
             prisma.post.count(),
             prisma.post.findMany({
                 skip: skip,
@@ -100,11 +100,10 @@ export async function GET(request: NextRequest) {
                             },
                         },
                     },
+                    _count: true,
                 },
             }),
         ])
-
-        const [totalCount, posts] = postResult
 
         return NextResponse.json(
             { posts, pageNumber, pageSize, totalCount },

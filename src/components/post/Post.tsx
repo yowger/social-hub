@@ -19,6 +19,7 @@ export default function Post({
     content,
     // image,
     Comments,
+    _count,
 }: PostProps) {
     return (
         <PostWrapper>
@@ -49,6 +50,8 @@ export default function Post({
                         })}
                     </div>
                 )}
+
+                {_count.Comments > 1 && <p className="text-sm">View more comments</p>}
 
                 {/* <div>view more comments</div> */}
             </PostInteractionPanel>

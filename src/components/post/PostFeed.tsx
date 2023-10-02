@@ -47,6 +47,7 @@ function PostFeed() {
                             createdAt={post.createdAt}
                             privacy={post.privacy}
                             content={post.content}
+                            _count={post._count}
                             Comments={post.Comments}
                         />
                     )

@@ -23,6 +23,10 @@ export type Post = {
     author: author
     recipient: author
     Comments: Comment[]
+    _count: {
+        Comments: number
+        Reaction: number
+    }
 }
 
 export type ApiPost = {
