@@ -19,8 +19,8 @@ export default function Post({
     content,
     // image,
     Comments,
-}: // _count,
-PostProps) {
+    _count,
+}: PostProps) {
     return (
         <PostWrapper>
             <PostHeader name={author.name} date={createdAt} privacy={privacy} />
@@ -28,7 +28,7 @@ PostProps) {
             {/* <PostImage image={image} /> */}
 
             <PostInteractionPanel>
-                <PostInfo />
+                <PostInfo count={_count} />
                 <PostAction />
                 <CommentComposer postId={id} />
 
@@ -51,9 +51,9 @@ PostProps) {
                     </div>
                 )}
 
-                {/* {_count.Comments > 1 && <p className="text-sm">View more comments</p>} */}
-
-                {/* <div>view more comments</div> */}
+                {_count.Comments > 1 && (
+                    <p className="text-sm">View more comments</p>
+                )}
             </PostInteractionPanel>
         </PostWrapper>
     )

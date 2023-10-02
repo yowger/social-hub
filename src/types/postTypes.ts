@@ -15,6 +15,11 @@ export type Comment = {
     updatedAt: Date
 }
 
+export type Count = {
+    Comments: number
+    Reaction: number
+}
+
 export type Post = {
     id: string
     content: string
@@ -23,10 +28,7 @@ export type Post = {
     author: author
     recipient: author
     Comments: Comment[]
-    _count: {
-        Comments: number
-        Reaction: number
-    }
+    _count: Count
 }
 
 export type ApiPost = {
