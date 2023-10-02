@@ -39,7 +39,8 @@ function PostFeed() {
                 {post.map((post, index) => {
                     return (
                         <Post
-                            key={index}
+                            key={post.id}
+                            postId={post.id}
                             name={post.author.name}
                             date={post.createdAt}
                             privacy={post.privacy}

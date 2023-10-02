@@ -27,8 +27,6 @@ export async function POST(request: NextRequest) {
             data: { content, authorId: user.id, recipientId: user.id },
         })
 
-        console.log("created post: ", post)
-
         return NextResponse.json({ post }, { status: 201 })
     } catch (error) {
         const zodErrorResponse = zodCustomError(

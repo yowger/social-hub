@@ -1,0 +1,54 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import useCreateComment from "@/hooks/api/comment/useCreateComment"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { Loader2 } from "lucide-react"
+
+type CommentProps = {
+    postId: string
+}
+
+export default function CommentComposer({ postId }: CommentProps) {
+    const [commentContent, setCommentContent] = useState("")
+    const { mutate, isLoading, isSuccess, error } = useCreateComment()
+
+    const handlePostSubmit = () => {
+        if (!commentContent.trim()) {
+            return
+        }
+
+        mutate({ content: commentContent, postId })
+    }
+
+    useEffect(() => {
+        if (isSuccess) {
+            setCommentContent("")
+        }
+    }, [isSuccess])
+
+    return (
+        <div className="space-y-2">
+            <Textarea
+                placeholder="Write your comment"
+                value={commentContent}
+                onChange={(e) => setCommentContent(e.target.value)}
+                className="bg-secondary"
+            />
+            <div className="flex justify-end">
+                <Button
+                    size="sm"
+                    onClick={handlePostSubmit}
+                    disabled={isLoading}
+                >
+                    {isLoading && (
+                        <Loader2 className="mr-2 h-3 w-3 animate-spin" />
+                    )}
+                    COMMENT
+                </Button>
+            </div>
+            {error && <p>{error.message}</p>}
+        </div>
+    )
+}
