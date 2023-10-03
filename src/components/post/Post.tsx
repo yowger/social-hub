@@ -31,7 +31,12 @@ export default function Post({
 
     return (
         <PostWrapper>
-            <PostHeader name={author.name} date={createdAt} privacy={privacy} />
+            <PostHeader
+                id={id}
+                name={author.name}
+                date={createdAt}
+                privacy={privacy}
+            />
             <PostContent content={content} />
             {/* <PostImage image={image} /> */}
 

@@ -46,7 +46,7 @@ Comment) {
                         </div>
                     </div>
 
-                    <div className="text-xs theme-social-text-secondary">
+                    <div className="text-xs text-muted-foreground">
                         {timeAgo}
                     </div>
                 </div>

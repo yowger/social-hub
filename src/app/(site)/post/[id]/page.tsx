@@ -1,3 +1,5 @@
+import SinglePost from "@/components/post/SinglePost"
+import HydrateClient from "@/components/tanstack/HydrateClient"
 import { POST_QUERY_KEY } from "@/hooks/api/queryKeys"
 import getQueryClient from "@/lib/getQueryClient"
 import prisma from "@/lib/prismaDb"
@@ -20,5 +22,9 @@ export default async function Post({ params }: { params: { id: string } }) {
     const dehydratedState = dehydrate(queryClient)
 
     console.log("post: ", dehydratedState)
-    return <div>post page</div>
+    return (
+        <HydrateClient state={dehydratedState}>
+            <SinglePost id={postId} />
+        </HydrateClient>
+    )
 }
