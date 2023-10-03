@@ -1,16 +1,24 @@
+import { POST_QUERY_KEY } from "@/hooks/api/queryKeys"
 import getQueryClient from "@/lib/getQueryClient"
 import prisma from "@/lib/prismaDb"
+import { dehydrate } from "@tanstack/react-query"
 
-export default async function Post({ params }: { params: { id: string } }) {
-    const queryClient = getQueryClient()
-    const postId = params.id
-
-    const post = await prisma.post.findUnique({
+const getPost = async (id: string) => {
+    return await prisma.post.findUnique({
         where: {
-            id: postId,
+            id,
         },
     })
+}
+export default async function Post({ params }: { params: { id: string } }) {
+    const postId = params.id
 
-    console.log("post: ", post)
+    const queryClient = getQueryClient()
+    await queryClient.prefetchQuery([POST_QUERY_KEY, postId], () =>
+        getPost(postId)
+    )
+    const dehydratedState = dehydrate(queryClient)
+
+    console.log("post: ", dehydratedState)
     return <div>post page</div>
 }
