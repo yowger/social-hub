@@ -2,14 +2,15 @@ import axiosPublic from "@/lib/axios"
 import type { AxiosError } from "axios"
 import type { UserRegister } from "@/schemas/registerSchema"
 import { USER_QUERY_KEY } from "../queryKeys"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
+import getQueryClient from "@/lib/getQueryClient"
 
 const registerUser = (user: UserRegister): Promise<any> => {
     return axiosPublic.post("/api/register", user)
 }
 
 const useRegisterUser = () => {
-    const queryClient = useQueryClient()
+    const queryClient = getQueryClient()
 
     return useMutation<UserRegister, AxiosError, UserRegister>({
         mutationFn: registerUser,

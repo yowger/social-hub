@@ -2,14 +2,15 @@ import { AxiosError } from "axios"
 import axiosPublic from "@/lib/axios"
 import type { UserComment } from "@/schemas/commentSchema"
 import { POST_QUERY_KEY } from "../queryKeys"
-import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useMutation } from "@tanstack/react-query"
+import getQueryClient from "@/lib/getQueryClient"
 
 const createComment = (post: UserComment): Promise<any> => {
     return axiosPublic.post("/api/comment", post)
 }
 
 const useCreateComment = () => {
-    const queryClient = useQueryClient()
+    const queryClient = getQueryClient()
 
     return useMutation<UserComment, AxiosError, UserComment>({
         mutationFn: createComment,
