@@ -10,7 +10,7 @@ export default function PostInfo({ count }: Props) {
     return (
         <>
             {count.Comments > 0 || count.Reaction > 0 ? (
-                <div className="text-sm flex items-center justify-between py-1.5 theme-social-text-secondary">
+                <div className="text-sm flex items-center justify-between pb-1.5 theme-social-text-secondary">
                     <div>Reactions - 2</div>
 
                     <div>

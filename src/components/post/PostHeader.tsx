@@ -29,7 +29,11 @@ export default function PostHeader({ name, date, privacy }: PostHeaderProps) {
             </div>
 
             <div>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="rounded-full theme-social-text-secondary"
+                >
                     <MoreHorizontal className="h-[1.2rem] w-[1.2rem] scale-100 transition-all" />
                     <span className="sr-only">Notifications</span>
                 </Button>
