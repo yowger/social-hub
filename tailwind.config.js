@@ -51,8 +51,9 @@ module.exports = {
                     foreground: "hsl(var(--card-foreground))",
                 },
                 // social theme
-                "social-primary": {
-                    DEFAULT:  "#3B82F6",
+                "social-secondary": {
+                    DEFAULT: "#4B5563",
+                    dark: "#808B9C",
                 },
             },
             borderRadius: {

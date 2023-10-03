@@ -13,7 +13,7 @@ export default function PostAction({
     onShare,
 }: PostActionProps) {
     return (
-        <div className="grid grid-cols-3 gap-1 border-y py-0.5">
+        <div className="grid grid-cols-3 gap-1 border-y py-0.5 theme-social-text-secondary">
             <Button
                 variant="ghost"
                 size="sm"

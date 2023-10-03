@@ -16,8 +16,6 @@ export default function PostContent({ content }: PostContentProps) {
     useEffect(() => {
         const contentDivHeight = contentRef.current?.offsetHeight
 
-        console.log("content ", content, contentDivHeight)
-
         if (contentDivHeight && contentDivHeight > 117) {
             setIsExpanded(true)
         }

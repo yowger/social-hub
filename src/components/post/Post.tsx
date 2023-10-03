@@ -2,13 +2,13 @@ import PostHeader from "./PostHeader"
 import PostContent from "./PostContent"
 import PostImage from "./PostImage"
 import PostWrapper from "./PostWrapper"
-import PostInteractionPanel from "./PostInteractionPanel"
 import PostInfo from "./PostInfo"
 import PostAction from "./PostAction"
 import CommentComposer from "./CommentComposer"
 import PostComment from "./PostComment"
 import type { Post } from "@/types/postTypes"
 import { useState } from "react"
+import clsx from "clsx"
 
 type PostProps = Post
 
@@ -22,11 +22,11 @@ export default function Post({
     Comments,
     _count,
 }: PostProps) {
-    const [isCommentVisible, setIsCommentVisible] = useState(false)
+    const [isCommentComposerVisible, setIsCommentComposerVisible] =
+        useState(false)
 
     const onClickComment = () => {
-        console.log("hi")
-        setIsCommentVisible((prev) => !prev)
+        setIsCommentComposerVisible((prev) => !prev)
     }
 
     return (
@@ -35,13 +35,18 @@ export default function Post({
             <PostContent content={content} />
             {/* <PostImage image={image} /> */}
 
-            <PostInteractionPanel>
+            <div className="px-4">
                 <PostInfo count={_count} />
                 <PostAction onComment={onClickComment} />
-                {isCommentVisible && <CommentComposer postId={id} />}
+                {isCommentComposerVisible && <CommentComposer postId={id} />}
 
-                {Comments && (
-                    <div className="space-y-2.5 pb-2.5">
+                {Comments.length > 0 && (
+                    <div
+                        className={clsx(
+                            Comments.length === 1 ? "pb-2" : "",
+                            "space-y-2.5 mt-2"
+                        )}
+                    >
                         {Comments.map((Comment) => {
                             return (
                                 <PostComment
@@ -60,9 +65,11 @@ export default function Post({
                 )}
 
                 {_count.Comments > 1 && (
-                    <p className="text-sm">View more comments</p>
+                    <div className="text-sm cursor-pointer duration-100 inline-block h-full py-1 mb-1 font-medium theme-social-text-secondary hover:underline">
+                        View more comments
+                    </div>
                 )}
-            </PostInteractionPanel>
+            </div>
         </PostWrapper>
     )
 }

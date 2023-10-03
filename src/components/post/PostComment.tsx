@@ -11,8 +11,8 @@ export default function PostComment({
     author,
     createdAt,
     updatedAt,
-    // reactions
-}: Comment) {
+}: // reactions
+Comment) {
     const timeAgo = getTimeAgo(createdAt)
 
     return (
@@ -46,7 +46,9 @@ export default function PostComment({
                         </div>
                     </div>
 
-                    <div className="text-xs">{timeAgo}</div>
+                    <div className="text-xs theme-social-text-secondary">
+                        {timeAgo}
+                    </div>
                 </div>
             </div>
         </div>

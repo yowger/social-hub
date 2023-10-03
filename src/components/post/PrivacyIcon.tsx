@@ -2,9 +2,9 @@ import { Globe, Lock, User2, Users2 } from "lucide-react"
 import { Privacy } from "@/types/commonTypes"
 
 export const iconMappings: Record<Privacy, JSX.Element> = {
-    PUBLIC: <Globe className="w-4 h-4" />,
-    FOLLOWERS: <Users2 className="w-4 h-4" />,
-    PRIVATE: <Lock className="w-4 h-4" />,
+    PUBLIC: <Globe size={14} />,
+    FOLLOWERS: <Users2 size={14} />,
+    PRIVATE: <Lock size={14} />,
 }
 
 type PrivacyIconType = {
@@ -12,5 +12,5 @@ type PrivacyIconType = {
 }
 
 export default function PrivacyIcon({ privacy }: PrivacyIconType): JSX.Element {
-    return iconMappings[privacy] || <Globe className="w-4 h-4" />
+    return iconMappings[privacy] || <Globe size={14} />
 }

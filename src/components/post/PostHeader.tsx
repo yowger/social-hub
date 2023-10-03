@@ -19,9 +19,9 @@ export default function PostHeader({ name, date, privacy }: PostHeaderProps) {
                 </div>
 
                 <div>
-                    <h3 className="font-semibold">{name}</h3>
-                    <div className="flex text-sm items-center gap-1.5">
-                        <p>{timeAgo}</p>
+                    <h3 className="font-semibold leading-4">{name}</h3>
+                    <div className="flex items-center gap-1.5 theme-social-text-secondary">
+                        <p className="text-sm">{timeAgo}</p>
                         <p>·</p>
                         <PrivacyIcon privacy={privacy} />
                     </div>
