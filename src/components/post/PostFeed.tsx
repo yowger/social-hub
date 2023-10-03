@@ -37,7 +37,7 @@ function PostFeed() {
                 endMessage={endMessage}
             >
                 {post.map((post) => {
-                    // console.log("post: ", post)
+                    console.log("post: ", post)
                     return (
                         <Post
                             key={post.id}

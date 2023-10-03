@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import useCreateComment from "@/hooks/api/comment/useCreateComment"
 import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Input } from "../ui/input"
 import { Loader2 } from "lucide-react"
 
 type CommentProps = {
@@ -30,7 +30,7 @@ export default function CommentComposer({ postId }: CommentProps) {
 
     return (
         <div className="space-y-2 mt-2">
-            <Textarea
+            <Input
                 placeholder="Write your comment"
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)}

@@ -1,8 +1,8 @@
 import { AxiosError } from "axios"
 import axiosPublic from "@/lib/axios"
-import { useMutation, useQueryClient } from "react-query"
 import type { UserComment } from "@/schemas/commentSchema"
 import { POST_QUERY_KEY } from "../queryKeys"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 const createComment = (post: UserComment): Promise<any> => {
     return axiosPublic.post("/api/comment", post)
@@ -14,7 +14,10 @@ const useCreateComment = () => {
     return useMutation<UserComment, AxiosError, UserComment>({
         mutationFn: createComment,
         onSuccess: (postComment) =>
-            queryClient.invalidateQueries(POST_QUERY_KEY),
+            queryClient.invalidateQueries({
+                queryKey: [POST_QUERY_KEY],
+                exact: true,
+            }),
     })
 }
 

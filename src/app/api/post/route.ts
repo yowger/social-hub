@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
 }
 
 // might change to raw or aggregate in the future better performance
-// using this method, it takes about a 1 second to fetch request
+// using this method, it takes about a 1 second with free tier mongo to fetch request
 
 export async function GET(request: NextRequest) {
     try {
@@ -82,6 +82,7 @@ export async function GET(request: NextRequest) {
                         select: {
                             id: true,
                             name: true,
+                            image: true,
                         },
                     },
                     Comments: {
@@ -110,7 +111,7 @@ export async function GET(request: NextRequest) {
 
         return NextResponse.json(
             { posts, pageNumber, pageSize, totalCount },
-            { status: 201 }
+            { status: 200 }
         )
     } catch (error) {
         console.log("Failed to fetch posts: ", error)
