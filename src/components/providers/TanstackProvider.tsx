@@ -3,9 +3,10 @@
 import { useState } from "react"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import queryClientOptions from "@/config/QueryClientOptions"
 
 export function TanstackProvider({ children }: { children: React.ReactNode }) {
-    const [queryClient] = useState(() => new QueryClient())
+    const [queryClient] = useState(() => new QueryClient(queryClientOptions))
 
     return (
         <QueryClientProvider client={queryClient}>

@@ -1,16 +1,15 @@
 import { POST_QUERY_KEY } from "../queryKeys"
 import axiosPublic from "@/lib/axios"
-import { AxiosResponse } from "axios"
-import { ApiPost } from "@/types/postTypes"
 import { useInfiniteQuery } from "@tanstack/react-query"
+import type { AxiosResponse } from "axios"
+import type { ApiPost } from "@/types/postTypes"
 
 const getPosts = async (page = 0, pageSize = 10): Promise<ApiPost> => {
     const response: AxiosResponse<ApiPost> = await axiosPublic.get(
         `api/post?pageNumber=${page}&pageSize=${pageSize}`
     )
-    const { data } = response
 
-    return data
+    return response.data
 }
 
 const useInfiniteGetPosts = (pageSize = 10) => {

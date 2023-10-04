@@ -31,7 +31,9 @@ export type Post = {
     _count: Count
 }
 
-export type PostById = Omit<Post, "_count" | "Comments">
+export type PostById = {
+    post: Omit<Post, "_count" | "Comments">
+}
 
 export type ApiPost = {
     posts: Post[]

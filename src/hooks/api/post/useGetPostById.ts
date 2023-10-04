@@ -1,33 +1,22 @@
-// import { AxiosResponse } from "axios"
-// import axiosPublic from "@/lib/axios"
-// import { PostById } from "@/types/postTypes"
-// import { POST_QUERY_KEY } from "../queryKeys"
-// import { useQuery } from "@tanstack/react-query"
+import axiosPublic from "@/lib/axios"
+import { POST_QUERY_KEY } from "../queryKeys"
+import { useQuery } from "@tanstack/react-query"
+import type { AxiosResponse } from "axios"
+import type { PostById } from "@/types/postTypes"
 
-// const getPostById = async (page = 0, pageSize = 10): Promise<PostById> => {
-//     const response: AxiosResponse<PostById> = await axiosPublic.get(
-//         `api/post?pageNumber=${page}&pageSize=${pageSize}`
-//     )
-//     const { data } = response
+export const getPostById = async (id: string): Promise<PostById> => {
+    const response: AxiosResponse<PostById> = await axiosPublic.get(
+        `/api/post/${id}`
+    )
 
-//     return data
-// }
+    return response.data
+}
 
+const useGetPostById = (id: string) => {
+    return useQuery({
+        queryKey: [POST_QUERY_KEY, id],
+        queryFn: () => getPostById(id),
+    })
+}
 
-// const useGetPostById = (pageSize = 10) => {
-//     return useQuery({
-//         queryKey: [POST_QUERY_KEY, ],
-//         queryFn: ({ pageParam: page = 0 }) => getPosts(page, pageSize),
-//         refetchOnWindowFocus: false,
-//         getNextPageParam: (lastPage, allPages) => {
-//             const totalPages = Math.ceil(lastPage.totalCount / pageSize)
-//             const currentPageCount = allPages.length
-//             const hasNextPage = totalPages > currentPageCount
-
-//             return hasNextPage ? currentPageCount : undefined
-//         },
-//     })
-// }
-
-
-// export default useGetPostById
+export default useGetPostById

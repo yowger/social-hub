@@ -1,36 +1,27 @@
 "use client"
 
-import { POST_QUERY_KEY } from "@/hooks/api/queryKeys"
-import { useQuery, useQueryClient } from "@tanstack/react-query"
 import PostWrapper from "./PostWrapper"
 import PostHeader from "./PostHeader"
 import PostContent from "./PostContent"
+import useGetPostById from "@/hooks/api/post/useGetPostById"
 
 export default function SinglePost({ id }: { id: string }) {
-    const { data, isLoading } = useQuery({
-        queryKey: [POST_QUERY_KEY, id],
-        queryFn: () => fetch(`/api/post/${id}`).then((res) => res.json()),
-    })
-
-    const queryClient = useQueryClient()
-
-    console.log("data: ", data?.post)
+    const { data } = useGetPostById(id)
+    const { post } = data ?? {}
 
     return (
         <div>
-            {isLoading ? (
-                <p>loading</p>
+            {post ? (
+                <PostWrapper>
+                    <PostHeader
+                        name={post.author.name}
+                        date={post.createdAt}
+                        privacy={post.privacy}
+                    />
+                    <PostContent content={post.content} />
+                </PostWrapper>
             ) : (
-                data?.post && (
-                    <PostWrapper>
-                        <PostHeader
-                            name={data.post.author.name}
-                            date={data.post.createdAt}
-                            privacy={data.post.privacy}
-                        />
-                        <PostContent content={data.post.content} />
-                    </PostWrapper>
-                )
+                <p>post not found</p>
             )}
         </div>
     )
