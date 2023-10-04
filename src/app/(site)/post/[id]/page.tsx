@@ -11,6 +11,7 @@ export default async function page({ params }: { params: { id: string } }) {
     await queryClient.prefetchQuery([POST_QUERY_KEY, postId], () =>
         getPostById(postId)
     )
+
     const dehydratedState = dehydrate(queryClient)
 
     return (
