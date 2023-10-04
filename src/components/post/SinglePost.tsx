@@ -24,7 +24,7 @@ export default function SinglePost({ id }: { id: string }) {
         data: commentData,
         hasNextPage,
         fetchNextPage,
-    } = useGetCommentsByPostId(id)
+    } = useGetCommentsByPostId(id, 8)
 
     const comments =
         commentData?.pages?.flatMap(({ comments }) => {

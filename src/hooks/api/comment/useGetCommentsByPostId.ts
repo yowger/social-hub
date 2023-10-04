@@ -6,20 +6,21 @@ import { ApiComment } from "@/types/commentTypes"
 
 export const getCommentsByPostId = async (
     postId: string,
-    page: number
+    page = 0,
+    pageSize = 10
 ): Promise<ApiComment> => {
     const response: AxiosResponse<ApiComment> = await axiosPublic.get(
-        `/api/comment/${postId}?pageNumber=${page}`
+        `/api/comment/${postId}?pageNumber=${page}&pageSize=${pageSize}`
     )
 
     return response.data
 }
 
-const useGetCommentsByPostId = (postId: string) => {
-    const pageSize = 10
+const useGetCommentsByPostId = (postId: string, pageSize = 10) => {
     return useInfiniteQuery({
         queryKey: [COMMENTS_QUERY_KEY, postId],
-        queryFn: ({ pageParam: page = 0 }) => getCommentsByPostId(postId, page),
+        queryFn: ({ pageParam: page = 0 }) =>
+            getCommentsByPostId(postId, page, pageSize),
         getNextPageParam: (lastPage, allPages) => {
             const totalPages = Math.ceil(lastPage.totalCount / pageSize)
             const currentPageCount = allPages.length
