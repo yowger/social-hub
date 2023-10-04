@@ -8,9 +8,13 @@ import { Loader2 } from "lucide-react"
 
 type CommentProps = {
     postId: string
+    onCommentSuccess?: () => void
 }
 
-export default function CommentComposer({ postId }: CommentProps) {
+export default function CommentComposer({
+    postId,
+    onCommentSuccess,
+}: CommentProps) {
     const [commentContent, setCommentContent] = useState("")
     const { mutate, isLoading, isSuccess, error } = useCreateComment()
 
@@ -25,8 +29,12 @@ export default function CommentComposer({ postId }: CommentProps) {
     useEffect(() => {
         if (isSuccess) {
             setCommentContent("")
+
+            if (onCommentSuccess) {
+                onCommentSuccess()
+            }
         }
-    }, [isSuccess])
+    }, [isSuccess, onCommentSuccess])
 
     return (
         <div className="space-y-2 mt-2 pb-2">

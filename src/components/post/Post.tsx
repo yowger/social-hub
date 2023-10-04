@@ -42,7 +42,11 @@ export default function Post({
             {/* <PostImage image={image} /> */}
 
             <div className="px-4">
-                <PostInfo count={_count} id={id} />
+                <PostInfo
+                    reactionCount={_count.Reaction}
+                    commentCount={_count.Comments}
+                    id={id}
+                />
                 <PostAction onComment={onClickComment} />
                 {isCommentComposerVisible && <CommentComposer postId={id} />}
 

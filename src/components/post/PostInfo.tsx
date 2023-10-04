@@ -3,26 +3,32 @@ import Link from "next/link"
 
 type PostInfoProps = {
     id: string
-    count: Count
+    reactionCount?: number
+    commentCount?: number
 }
 
-export default function PostInfo({ id, count }: PostInfoProps) {
-    // count.Comments
-    // count.Reaction
+export default function PostInfo({
+    id,
+    reactionCount,
+    commentCount,
+}: PostInfoProps) {
     return (
         <>
-            {count.Comments > 0 || count.Reaction > 0 ? (
+            {(commentCount && commentCount > 0) ||
+            (reactionCount && reactionCount > 0) ? (
                 <div className="text-sm flex items-center justify-between pb-1.5 text-muted-foreground">
                     <div>Reactions - 2</div>
 
                     <div>
-                        <Link
-                            href={`/post/${id}`}
-                            className="hover:underline hover:text-primary"
-                        >
-                            {count.Comments > 0 && count.Comments} comment
-                            {count.Comments > 1 && "s"}
-                        </Link>
+                        {commentCount && (
+                            <Link
+                                href={`/post/${id}`}
+                                className="hover:underline hover:text-primary"
+                            >
+                                {commentCount > 0 && commentCount} comment
+                                {commentCount > 1 && "s"}
+                            </Link>
+                        )}
                     </div>
                 </div>
             ) : null}
