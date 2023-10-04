@@ -8,6 +8,7 @@ const createComment = (post: UserComment): Promise<any> => {
     return axiosPublic.post("/api/comment", post)
 }
 
+// todo refactor for both comment and post
 const useCreateComment = () => {
     const queryClient = useQueryClient()
 

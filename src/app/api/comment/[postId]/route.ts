@@ -9,9 +9,9 @@ export async function GET(
     try {
         const postId = params.postId
         const { searchParams } = new URL(request.url)
-
         const pageNumber = +(searchParams.get("pageNumber") ?? 0)
         const pageSize = +(searchParams.get("pageSize") ?? 10)
+        console.log("page number: ", pageNumber)
 
         const skip = pageNumber * pageSize
 
@@ -26,6 +26,9 @@ export async function GET(
                 take: pageSize,
                 where: {
                     postId,
+                },
+                orderBy: {
+                    createdAt: "desc",
                 },
                 select: {
                     id: true,

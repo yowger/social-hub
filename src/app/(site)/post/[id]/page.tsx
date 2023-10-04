@@ -9,13 +9,14 @@ import { getCommentsByPostId } from "@/hooks/api/comment/useGetCommentsByPostId"
 export default async function page({ params }: { params: { id: string } }) {
     const postId = params.id
     const queryClient = getQueryClient()
+    const page = 0
 
     await queryClient.prefetchQuery([POST_QUERY_KEY, postId], () =>
         getPostById(postId)
     )
-    await queryClient.prefetchQuery([COMMENTS_QUERY_KEY, postId], () =>
-        getCommentsByPostId(postId)
-    )
+    // await queryClient.prefetchQuery([COMMENTS_QUERY_KEY, postId], () =>
+    //     getCommentsByPostId(postId, page)
+    // )
 
     const dehydratedState = dehydrate(queryClient)
 

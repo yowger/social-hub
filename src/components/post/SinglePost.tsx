@@ -1,25 +1,37 @@
 "use client"
 
 import { useState } from "react"
+import { useQueryClient } from "@tanstack/react-query"
+import clsx from "clsx"
 import PostWrapper from "./PostWrapper"
 import PostHeader from "./PostHeader"
 import PostContent from "./PostContent"
-import useGetPostById from "@/hooks/api/post/useGetPostById"
 import PostAction from "./PostAction"
 import CommentComposer from "./CommentComposer"
-import useGetCommentsByPostId from "@/hooks/api/comment/useGetCommentsByPostId"
 import PostComment from "./PostComment"
-import { useQueryClient } from "@tanstack/react-query"
-import clsx from "clsx"
+import useGetPostById from "@/hooks/api/post/useGetPostById"
+import useGetCommentsByPostId from "@/hooks/api/comment/useGetCommentsByPostId"
 import { COMMENTS_QUERY_KEY } from "@/hooks/api/queryKeys"
+import PostInfo from "./PostInfo"
 
+// todo refactor
 export default function SinglePost({ id }: { id: string }) {
     const queryClient = useQueryClient()
     const { data: postData } = useGetPostById(id)
     const { post } = postData ?? {}
 
-    const { data: commentData } = useGetCommentsByPostId(id)
-    const { comments } = commentData ?? {}
+    const {
+        data: commentData,
+        hasNextPage,
+        fetchNextPage,
+    } = useGetCommentsByPostId(id)
+
+    const comments =
+        commentData?.pages?.flatMap(({ comments }) => {
+            return comments
+        }) || []
+
+    const commentCount = commentData?.pages[0].totalCount
 
     const [isCommentComposerVisible, setIsCommentComposerVisible] =
         useState(false)
@@ -30,6 +42,10 @@ export default function SinglePost({ id }: { id: string }) {
 
     const onCommentSuccess = () => {
         queryClient.invalidateQueries({ queryKey: [COMMENTS_QUERY_KEY, id] })
+    }
+
+    const onNextComments = () => {
+        fetchNextPage()
     }
 
     return (
@@ -44,6 +60,7 @@ export default function SinglePost({ id }: { id: string }) {
                     <PostContent content={post.content} expandContent={true} />
 
                     <div className="px-4">
+                        <PostInfo commentCount={commentCount} />
                         <PostAction onComment={onClickComment} />
                         {isCommentComposerVisible && (
                             <CommentComposer
@@ -74,6 +91,15 @@ export default function SinglePost({ id }: { id: string }) {
                                     )
                                 })}
                             </div>
+                        )}
+
+                        {hasNextPage && (
+                            <span
+                                onClick={onNextComments}
+                                className="text-sm cursor-pointer duration-100 inline-block h-full py-1 mb-1 font-medium text-muted-foreground hover:underline hover:text-primary"
+                            >
+                                View more comments
+                            </span>
                         )}
                     </div>
                 </PostWrapper>

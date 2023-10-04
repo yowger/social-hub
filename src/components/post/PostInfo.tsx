@@ -2,11 +2,12 @@ import type { Count } from "@/types/postTypes"
 import Link from "next/link"
 
 type PostInfoProps = {
-    id: string
+    id?: string
     reactionCount?: number
     commentCount?: number
 }
 
+// todo: refactor
 export default function PostInfo({
     id,
     reactionCount,
@@ -20,15 +21,21 @@ export default function PostInfo({
                     <div>Reactions - 2</div>
 
                     <div>
-                        {commentCount && (
-                            <Link
-                                href={`/post/${id}`}
-                                className="hover:underline hover:text-primary"
-                            >
-                                {commentCount > 0 && commentCount} comment
-                                {commentCount > 1 && "s"}
-                            </Link>
-                        )}
+                        {commentCount &&
+                            (id ? (
+                                <Link
+                                    href={`/post/${id}`}
+                                    className="hover:underline hover:text-primary"
+                                >
+                                    {commentCount > 0 && commentCount} comment
+                                    {commentCount > 1 && "s"}
+                                </Link>
+                            ) : (
+                                <span>
+                                    {commentCount > 0 && commentCount} comment
+                                    {commentCount > 1 && "s"}
+                                </span>
+                            ))}
                     </div>
                 </div>
             ) : null}

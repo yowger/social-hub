@@ -16,7 +16,6 @@ const useInfiniteGetPosts = (pageSize = 10) => {
     return useInfiniteQuery({
         queryKey: [POST_QUERY_KEY],
         queryFn: ({ pageParam: page = 0 }) => getPosts(page, pageSize),
-        refetchOnWindowFocus: false,
         getNextPageParam: (lastPage, allPages) => {
             const totalPages = Math.ceil(lastPage.totalCount / pageSize)
             const currentPageCount = allPages.length
