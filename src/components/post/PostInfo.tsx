@@ -1,10 +1,12 @@
 import type { Count } from "@/types/postTypes"
+import Link from "next/link"
 
-type Props = {
+type PostInfoProps = {
+    id: string
     count: Count
 }
 
-export default function PostInfo({ count }: Props) {
+export default function PostInfo({ id, count }: PostInfoProps) {
     // count.Comments
     // count.Reaction
     return (
@@ -14,8 +16,13 @@ export default function PostInfo({ count }: Props) {
                     <div>Reactions - 2</div>
 
                     <div>
-                        {count.Comments > 0 && count.Comments} comment
-                        {count.Comments > 1 && "s"}
+                        <Link
+                            href={`/post/${id}`}
+                            className="hover:underline hover:text-primary"
+                        >
+                            {count.Comments > 0 && count.Comments} comment
+                            {count.Comments > 1 && "s"}
+                        </Link>
                     </div>
                 </div>
             ) : null}

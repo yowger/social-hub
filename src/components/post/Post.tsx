@@ -9,6 +9,7 @@ import PostComment from "./PostComment"
 import type { Post } from "@/types/postTypes"
 import { useState } from "react"
 import clsx from "clsx"
+import Link from "next/link"
 
 type PostProps = Post
 
@@ -41,7 +42,7 @@ export default function Post({
             {/* <PostImage image={image} /> */}
 
             <div className="px-4">
-                <PostInfo count={_count} />
+                <PostInfo count={_count} id={id} />
                 <PostAction onComment={onClickComment} />
                 {isCommentComposerVisible && <CommentComposer postId={id} />}
 
@@ -70,8 +71,8 @@ export default function Post({
                 )}
 
                 {_count.Comments > 1 && (
-                    <div className="text-sm cursor-pointer duration-100 inline-block h-full py-1 mb-1 font-medium theme-social-text-secondary hover:underline">
-                        View more comments
+                    <div className="text-sm cursor-pointer duration-100 inline-block h-full py-1 mb-1 font-medium text-muted-foreground hover:underline hover:text-primary">
+                        <Link href={`/post/${id}`}>View more comments</Link>
                     </div>
                 )}
             </div>
