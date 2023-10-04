@@ -1,11 +1,18 @@
 import { useEffect, useRef, useState } from "react"
 import clsx from "clsx"
-import { PostContentProps } from "@/types/userTypes"
 import { ChevronDown } from "lucide-react"
 import { Button } from "../ui/button"
 
+export type PostContentProps = {
+    content: string
+    expandContent?: boolean
+}
+
 // todo: sanitize
-export default function PostContent({ content }: PostContentProps) {
+export default function PostContent({
+    content,
+    expandContent = false,
+}: PostContentProps) {
     const [isExpanded, setIsExpanded] = useState(false)
     const contentRef = useRef<HTMLDivElement>(null)
 
@@ -14,12 +21,14 @@ export default function PostContent({ content }: PostContentProps) {
     }
 
     useEffect(() => {
+        if (expandContent) return
+
         const contentDivHeight = contentRef.current?.offsetHeight
 
         if (contentDivHeight && contentDivHeight > 117) {
             setIsExpanded(true)
         }
-    }, [])
+    }, [expandContent])
 
     return (
         <>

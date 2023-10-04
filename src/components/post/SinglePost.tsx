@@ -18,7 +18,7 @@ export default function SinglePost({ id }: { id: string }) {
                         date={post.createdAt}
                         privacy={post.privacy}
                     />
-                    <PostContent content={post.content} />
+                    <PostContent content={post.content} expandContent={true} />
                 </PostWrapper>
             ) : (
                 <p>post not found</p>
