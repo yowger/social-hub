@@ -29,7 +29,7 @@ export default function CommentComposer({ postId }: CommentProps) {
     }, [isSuccess])
 
     return (
-        <div className="space-y-2 mt-2">
+        <div className="space-y-2 mt-2 pb-2">
             <Input
                 placeholder="Write your comment"
                 value={commentContent}
