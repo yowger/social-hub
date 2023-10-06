@@ -1,7 +1,7 @@
 import axiosPublic from "@/lib/axios"
 import type { AxiosError } from "axios"
 import type { UserRegister } from "@/schemas/registerSchema"
-import { USER_QUERY_KEY } from "../queryKeys"
+import { USER_QUERY_KEY } from "../../../constants/queryKeys"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 const registerUser = (user: UserRegister): Promise<any> => {

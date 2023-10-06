@@ -1,5 +1,5 @@
 import getQueryClient from "@/lib/getQueryClient"
-import { COMMENTS_QUERY_KEY, POST_QUERY_KEY } from "@/hooks/api/queryKeys"
+import { COMMENTS_QUERY_KEY, POST_QUERY_KEY } from "@/constants/queryKeys"
 import { dehydrate } from "@tanstack/react-query"
 import HydrateClient from "@/components/tanstack/HydrateClient"
 import SinglePost from "@/components/post/SinglePost"
@@ -26,3 +26,4 @@ export default async function page({ params }: { params: { id: string } }) {
         </HydrateClient>
     )
 }
+

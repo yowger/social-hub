@@ -1,7 +1,7 @@
 import { AxiosError } from "axios"
 import axiosPublic from "@/lib/axios"
 import type { UserPost } from "@/schemas/postSchema"
-import { POST_QUERY_KEY } from "../queryKeys"
+import { POST_QUERY_KEY } from "../../../constants/queryKeys"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 const createPost = (post: UserPost): Promise<any> => {

@@ -11,7 +11,7 @@ import CommentComposer from "./CommentComposer"
 import PostComment from "./PostComment"
 import useGetPostById from "@/hooks/api/post/useGetPostById"
 import useGetCommentsByPostId from "@/hooks/api/comment/useGetCommentsByPostId"
-import { COMMENTS_QUERY_KEY } from "@/hooks/api/queryKeys"
+import { COMMENTS_QUERY_KEY } from "@/constants/queryKeys"
 import PostInfo from "./PostInfo"
 
 // todo refactor
@@ -53,6 +53,7 @@ export default function SinglePost({ id }: { id: string }) {
             {post ? (
                 <PostWrapper>
                     <PostHeader
+                        id={post.author.id}
                         name={post.author.name}
                         date={post.createdAt}
                         privacy={post.privacy}

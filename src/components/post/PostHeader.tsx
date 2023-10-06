@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Eye, MoreHorizontal } from "lucide-react"
+import { Eye, MoreHorizontal, Trash } from "lucide-react"
 import PrivacyIcon from "./PrivacyIcon"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
@@ -10,9 +10,10 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import type { Privacy } from "@/types/commonTypes"
+import useDeletePostById from "@/hooks/api/post/useDeletePost"
 
 export type PostHeaderProps = {
-    id?: string
+    id: string
     name: string
     date: Date
     privacy: Privacy
@@ -25,6 +26,12 @@ export default function PostHeader({
     privacy,
 }: PostHeaderProps) {
     const timeAgo = getTimeAgo(date)
+    const { mutate, isLoading, isSuccess, error } = useDeletePostById()
+
+    const onPostDelete = async (id: string) => {
+        const res = mutate(id)
+        console.log("response", res)
+    }
 
     return (
         <div className="flex justify-between pt-3 px-4">
@@ -59,21 +66,40 @@ export default function PostHeader({
                         </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-min p-2">
-                        {id && (
+                        <>
                             <div className="flex">
                                 <Button
                                     asChild
                                     variant="ghost"
                                     size="sm"
-                                    className="flex gap-2 items-center"
+                                    className="justify-start"
                                 >
-                                    <Link href={`/post/${id}`}>
+                                    <Link
+                                        href={`/post/${id}`}
+                                        className="w-full flex gap-2"
+                                    >
                                         <Eye size={18} />{" "}
-                                        <span className="text-sm">View</span>
+                                        <span className="text-sm block">
+                                            View
+                                        </span>
                                     </Link>
                                 </Button>
                             </div>
-                        )}
+
+                            <div className="flex">
+                                <Button
+                                    onClick={() => onPostDelete(id)}
+                                    variant="ghost"
+                                    size="sm"
+                                    className="justify-start"
+                                >
+                                    <div className="w-full flex gap-2">
+                                        <Trash size={18} />{" "}
+                                        <span className="text-sm">Delete</span>
+                                    </div>
+                                </Button>
+                            </div>
+                        </>
                     </PopoverContent>
                 </Popover>
             </div>

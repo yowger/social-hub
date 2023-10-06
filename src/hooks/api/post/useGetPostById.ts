@@ -1,5 +1,5 @@
 import axiosPublic from "@/lib/axios"
-import { POST_QUERY_KEY } from "../queryKeys"
+import { POST_QUERY_KEY } from "../../../constants/queryKeys"
 import { useQuery } from "@tanstack/react-query"
 import type { AxiosResponse } from "axios"
 import type { PostById } from "@/types/postTypes"

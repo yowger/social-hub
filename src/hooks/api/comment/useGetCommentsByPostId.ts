@@ -1,5 +1,5 @@
 import axiosPublic from "@/lib/axios"
-import { COMMENTS_QUERY_KEY } from "../queryKeys"
+import { COMMENTS_QUERY_KEY } from "../../../constants/queryKeys"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import type { AxiosResponse } from "axios"
 import { ApiComment } from "@/types/commentTypes"
