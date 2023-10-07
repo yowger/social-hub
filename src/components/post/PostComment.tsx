@@ -30,7 +30,7 @@ Comment) {
 
             return (
                 <div>
-                    <span className="flex gap-1 text-sm  text-muted-foreground font-medium mb-1">
+                    <span className="flex gap-1 text-sm  text-muted-foreground font-medium mb-1 ml-3">
                         <CornerDownRight size={14} className="mt-0.5" />
                         {renderText()}
                     </span>
