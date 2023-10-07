@@ -15,6 +15,7 @@ export type Comment = {
     createdAt: Date
     updatedAt: Date
     subCommentCount?: number
+    showReplyAction?: boolean
 }
 
 export type Count = {

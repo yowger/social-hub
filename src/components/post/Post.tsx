@@ -67,6 +67,7 @@ export default function Post({
                                     author={Comment.author}
                                     createdAt={Comment.createdAt}
                                     updatedAt={Comment.updatedAt}
+                                    showReplyAction={false}
                                     // reactions={comment.reactions}
                                 />
                             )

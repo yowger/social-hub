@@ -15,6 +15,7 @@ export default function PostComment({
     createdAt,
     updatedAt,
     subCommentCount,
+    showReplyAction = true,
 }: // reactions
 Comment) {
     const [showReplyForm, setShowReplyForm] = useState(false)
@@ -84,12 +85,14 @@ Comment) {
 
                     <div className="space-x-4 text-xs text-muted-foreground">
                         <span>{timeAgo}</span>
-                        <span
-                            onClick={handleReplyClick}
-                            className="font-bold cursor-pointer hover:underline"
-                        >
-                            Reply
-                        </span>
+                        {showReplyAction && (
+                            <span
+                                onClick={handleReplyClick}
+                                className="font-bold cursor-pointer hover:underline"
+                            >
+                                Reply
+                            </span>
+                        )}
                     </div>
 
                     {showReplyForm ? (

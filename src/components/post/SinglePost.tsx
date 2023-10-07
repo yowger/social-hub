@@ -78,7 +78,7 @@ export default function SinglePost({ id }: { id: string }) {
                                 )}
                             >
                                 {comments.map((comment) => {
-                                    console.log("comments: ", comment)
+                                    // console.log("comments: ", comment)
                                     const subCommentCount =
                                         comment?._count?.childrenComments
                                     return (

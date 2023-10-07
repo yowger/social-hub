@@ -102,6 +102,11 @@ export async function GET(request: NextRequest) {
                                     image: true,
                                 },
                             },
+                            _count: {
+                                select: {
+                                    childrenComments: true,
+                                },
+                            },
                         },
                     },
                     _count: true,
