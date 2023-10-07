@@ -8,11 +8,13 @@ import { Loader2 } from "lucide-react"
 
 type CommentProps = {
     postId: string
+    parentCommentId?: string
     onCommentSuccess?: () => void
 }
 
 export default function CommentComposer({
     postId,
+    parentCommentId,
     onCommentSuccess,
 }: CommentProps) {
     const [commentContent, setCommentContent] = useState("")
@@ -23,7 +25,7 @@ export default function CommentComposer({
             return
         }
 
-        mutate({ content: commentContent, postId })
+        mutate({ content: commentContent, postId, parentCommentId })
     }
 
     useEffect(() => {

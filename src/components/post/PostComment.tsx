@@ -3,9 +3,12 @@ import { Button } from "../ui/button"
 import { CornerDownRight, MoreHorizontal } from "lucide-react"
 import getTimeAgo from "@/lib/getTimeAgo"
 import type { Comment } from "@/types/postTypes"
+import { useState } from "react"
+import CommentComposer from "./CommentComposer"
 
 export default function PostComment({
     id,
+    commentId,
     content,
     image,
     author,
@@ -14,7 +17,16 @@ export default function PostComment({
     subCommentCount,
 }: // reactions
 Comment) {
+    const [showReplyForm, setShowReplyForm] = useState(false)
     const timeAgo = getTimeAgo(createdAt)
+
+    const handleReplyClick = () => {
+        setShowReplyForm(!showReplyForm)
+    }
+
+    const onCommentSuccess = () => {
+        setShowReplyForm(false)
+    }
 
     const renderSubCommentAction = () => {
         if (!subCommentCount) return
@@ -40,7 +52,7 @@ Comment) {
     }
 
     return (
-        <div className="">
+        <div className="w-full">
             <div className="flex space-x-2 group">
                 <div className="">
                     <Avatar className="w-8 h-8">
@@ -49,7 +61,7 @@ Comment) {
                     </Avatar>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-1 w-full">
                     <div className="flex gap-1">
                         <div className="flex flex-col gap-0.5 bg-secondary rounded-lg px-2.5 py-2">
                             <h3 className="font-medium text-sm">
@@ -70,11 +82,25 @@ Comment) {
                         </div>
                     </div>
 
-                    <div className="text-xs text-muted-foreground">
-                        {timeAgo}
+                    <div className="space-x-4 text-xs text-muted-foreground">
+                        <span>{timeAgo}</span>
+                        <span
+                            onClick={handleReplyClick}
+                            className="font-bold cursor-pointer hover:underline"
+                        >
+                            Reply
+                        </span>
                     </div>
 
-                    {renderSubCommentAction()}
+                    {showReplyForm ? (
+                        <CommentComposer
+                            postId={id}
+                            parentCommentId={commentId}
+                            onCommentSuccess={onCommentSuccess}
+                        />
+                    ) : (
+                        renderSubCommentAction()
+                    )}
                 </div>
             </div>
         </div>

@@ -1,7 +1,10 @@
 import { AxiosError } from "axios"
 import axiosPublic from "@/lib/axios"
 import type { UserComment } from "@/schemas/commentSchema"
-import { POST_QUERY_KEY } from "../../../constants/queryKeys"
+import {
+    COMMENTS_QUERY_KEY,
+    POST_QUERY_KEY,
+} from "../../../constants/queryKeys"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 
 const createComment = (post: UserComment): Promise<any> => {
@@ -14,11 +17,20 @@ const useCreateComment = () => {
 
     return useMutation<UserComment, AxiosError, UserComment>({
         mutationFn: createComment,
-        onSuccess: (postComment) =>
-            queryClient.invalidateQueries({
-                queryKey: [POST_QUERY_KEY],
-                exact: true,
-            }),
+        onSuccess: (postComment, variables) => {
+            const { postId } = variables
+
+            if (postId) {
+                console.log("has post id")
+                queryClient.invalidateQueries({
+                    queryKey: [COMMENTS_QUERY_KEY, postId],
+                })
+            } else {
+                queryClient.invalidateQueries({
+                    queryKey: [POST_QUERY_KEY],
+                })
+            }
+        },
     })
 }
 

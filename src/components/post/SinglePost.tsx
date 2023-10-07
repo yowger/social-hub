@@ -41,7 +41,7 @@ export default function SinglePost({ id }: { id: string }) {
     }
 
     const onCommentSuccess = () => {
-        queryClient.invalidateQueries({ queryKey: [COMMENTS_QUERY_KEY, id] })
+      
     }
 
     const onNextComments = () => {
@@ -84,7 +84,8 @@ export default function SinglePost({ id }: { id: string }) {
                                     return (
                                         <PostComment
                                             key={comment.id}
-                                            id={comment.id}
+                                            id={post.id}
+                                            commentId={comment.id}
                                             content={comment.content}
                                             // image={comment.image}
                                             author={comment.author}

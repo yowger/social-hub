@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
         const body: UserComment = await request.json()
         const parsedBody = userCommentSchema.parse(body)
-        const { content, image, postId } = parsedBody
+        const { content, image, postId, parentCommentId } = parsedBody
 
         const post = prisma.comments.findUnique({
             where: {
@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         }
 
         const comment = await prisma.comments.create({
-            data: { content, postId, authorId: user.id },
+            data: { content, postId, authorId: user.id, parentCommentId },
         })
 
         return NextResponse.json({ comment }, { status: 201 })
@@ -59,5 +59,3 @@ export async function POST(request: NextRequest) {
         )
     }
 }
-
-

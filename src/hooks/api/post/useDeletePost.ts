@@ -6,10 +6,6 @@ import type { AxiosError, AxiosResponse } from "axios"
 export const deletePostById = async (id: string) => {
     const response = await axiosPublic.delete(`/api/post/${id}`)
 
-    console.log(
-        "🚀 ~ file: useDeletePost.ts:9 ~ deletePostById ~ response:",
-        response
-    )
     return response.data
 }
 
@@ -18,7 +14,7 @@ const useDeletePostById = () => {
 
     return useMutation({
         mutationFn: (id: string) => deletePostById(id),
-        onSuccess: (postData) => {
+        onSuccess: (postData, variables) => {
             queryClient.invalidateQueries([POST_QUERY_KEY])
         },
     })

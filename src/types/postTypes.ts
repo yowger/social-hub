@@ -8,6 +8,7 @@ export type author = {
 
 export type Comment = {
     id: string
+    commentId?: string
     content: string
     image?: string
     author: author
