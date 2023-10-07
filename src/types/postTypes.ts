@@ -13,6 +13,7 @@ export type Comment = {
     author: author
     createdAt: Date
     updatedAt: Date
+    subCommentCount?: number
 }
 
 export type Count = {

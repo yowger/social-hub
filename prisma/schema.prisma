@@ -60,16 +60,19 @@ model Post {
 }
 
 model Comments {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  content   String
-  image     String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId  String     @db.ObjectId
-  post      Post       @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId    String     @db.ObjectId
-  Reaction  Reaction[]
+  id               String     @id @default(auto()) @map("_id") @db.ObjectId
+  content          String
+  image            String?
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  author           User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId         String     @db.ObjectId
+  post             Post       @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId           String     @db.ObjectId
+  parentCommentId  String?    @db.ObjectId
+  parentComment    Comments?  @relation("SubComments", fields: [parentCommentId], references: [id], onUpdate: NoAction, onDelete: NoAction)
+  childrenComments Comments[] @relation("SubComments")
+  Reaction         Reaction[]
 }
 
 model Reaction {

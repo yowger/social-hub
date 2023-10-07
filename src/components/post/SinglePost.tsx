@@ -78,6 +78,9 @@ export default function SinglePost({ id }: { id: string }) {
                                 )}
                             >
                                 {comments.map((comment) => {
+                                    console.log("comments: ", comment)
+                                    const subCommentCount =
+                                        comment?._count?.childrenComments
                                     return (
                                         <PostComment
                                             key={comment.id}
@@ -88,6 +91,7 @@ export default function SinglePost({ id }: { id: string }) {
                                             createdAt={comment.createdAt}
                                             updatedAt={comment.updatedAt}
                                             // reactions={comment.reactions}
+                                            subCommentCount={subCommentCount}
                                         />
                                     )
                                 })}

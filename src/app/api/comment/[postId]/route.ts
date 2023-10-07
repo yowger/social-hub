@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server"
 import prisma from "@/lib/prismaDb"
 
-
 export async function GET(
     request: Request,
     { params }: { params: { postId: string } }
@@ -26,6 +25,7 @@ export async function GET(
                 take: pageSize,
                 where: {
                     postId,
+                    parentComment: null,
                 },
                 orderBy: {
                     createdAt: "desc",
@@ -42,9 +42,16 @@ export async function GET(
                             image: true,
                         },
                     },
+                    _count: {
+                        select: {
+                            childrenComments: true
+                        }
+                    },
                 },
             }),
         ])
+
+        console.log("comments: ", comments)
 
         return NextResponse.json(
             { comments, pageNumber, pageSize, totalCount },

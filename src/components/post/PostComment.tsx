@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
-import { MoreHorizontal } from "lucide-react"
+import { CornerDownRight, MoreHorizontal } from "lucide-react"
 import getTimeAgo from "@/lib/getTimeAgo"
 import type { Comment } from "@/types/postTypes"
 
@@ -11,9 +11,33 @@ export default function PostComment({
     author,
     createdAt,
     updatedAt,
+    subCommentCount,
 }: // reactions
 Comment) {
     const timeAgo = getTimeAgo(createdAt)
+
+    const renderSubCommentAction = () => {
+        if (!subCommentCount) return
+
+        if (subCommentCount > 0) {
+            const renderText = () => {
+                if (subCommentCount > 1) {
+                    return `View all ${subCommentCount} replies`
+                } else if (subCommentCount === 1) {
+                    return "View 1 reply"
+                }
+            }
+
+            return (
+                <div>
+                    <span className="flex gap-1 text-sm  text-muted-foreground font-medium mb-1">
+                        <CornerDownRight size={14} className="mt-0.5" />
+                        {renderText()}
+                    </span>
+                </div>
+            )
+        }
+    }
 
     return (
         <div className="">
@@ -49,6 +73,8 @@ Comment) {
                     <div className="text-xs text-muted-foreground">
                         {timeAgo}
                     </div>
+
+                    {renderSubCommentAction()}
                 </div>
             </div>
         </div>

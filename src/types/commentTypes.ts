@@ -6,6 +6,9 @@ export type Comment = {
     createdAt: Date
     updatedAt: Date
     author: author
+    _count?: {
+        childrenComments: number
+    }
 }
 
 export type ApiComment = {
